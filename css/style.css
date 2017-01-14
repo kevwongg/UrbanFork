@@ -1,5 +1,5 @@
 body {
-  min-height: 75rem; /* Can be removed; just added for demo purposes */
+  min-height: 75rem; 
 }
 
 .navbar {
@@ -10,13 +10,13 @@ body {
   padding-top: 6rem;
   padding-bottom: 6rem;
   margin-bottom: 0;
-  background-image: url('../img/restaurant.jpg');
+  background-image: url('../img/food.jpg');
   background-repeat : no-repeat;
   background-size: cover;
   background-attachment: fixed;
   background-position: center center;
   width: 100%;
-  height: 75%;
+  height: 700px;
 }
 
 .jumbotron p:last-child {
@@ -32,7 +32,7 @@ body {
 }
 
 .album {
-  min-height: 50rem; /* Can be removed; just added for demo purposes */
+  min-height: 50rem; 
   padding-top: 3rem;
   padding-bottom: 3rem;
   background-color: #f7f7f7;
