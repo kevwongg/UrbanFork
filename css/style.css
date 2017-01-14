@@ -51,7 +51,9 @@ body {
 }
 
 .card-text {
-  font-size: 85%;
+  font-size: 150%;
+  background-color: #7EC0EE;
+  color: #FFF;
 }
 
 footer {
