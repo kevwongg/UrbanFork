@@ -35,42 +35,29 @@
 
         <div class="row">
           <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <img src="img/chinese.jpg" alt="Card image cap">
+            <p class="card-text">Chinese</p>
           </div>
           <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <img src="img/french.jpg" alt="Card image cap">
+            <p class="card-text">French</p>
           </div>
           <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          </div>
-
-          <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          </div>
-          <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          </div>
-          <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <img src="img/italian.jpg" alt="Card image cap">
+            <p class="card-text">Italian</p>
           </div>
 
           <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <img src="img/korean.jpg" alt="Card image cap">
+            <p class="card-text">Korean</p>
           </div>
           <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <img src="img/german.jpg" alt="Card image cap">
+            <p class="card-text">German</p>
           </div>
           <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <img src="img/japanese.jpg" alt="Card image cap">
+            <p class="card-text">Japanese</p>
           </div>
         </div>
 
