@@ -19,7 +19,7 @@
         <ul class="nav navbar-nav pull-right">
           <li class="active"><a href="#">Home</a></li>
           <li><a class="pull-center" href="login.php">Login/Register</a></li>
-          <li><a class="pull-center" href="#">Search Restaurants</a></li>
+          <li><a class="pull-center" href="search.php">Search Restaurants</a></li>
           <li><a class="pull-center" href="#">Favourites</a></li>
         </ul>
       </div>
