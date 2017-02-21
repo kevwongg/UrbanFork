@@ -56,6 +56,10 @@ body {
   color: #FFF;
 }
 
+.searchbar .container{
+	margin-top: 2cm;
+}
+
 footer {
   padding-top: 3rem;
   padding-bottom: 3rem;
