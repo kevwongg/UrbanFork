@@ -12,13 +12,13 @@
   <title>UrbanFork</title>
   <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  <link href="css/login.css" rel="stylesheet">
+  <link href="css/register.css" rel="stylesheet">
 </head>
 <body>
   <?php echo $page_title;?>
   
   <form id="form" action="action_page.php">
-  	<p class="text-center login-title">Login</p>
+  	<p class="text-center login-title">Register</p>
     <div class="container">
       <label><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="uname" required>
@@ -31,7 +31,6 @@
 
     <div class="container">
       <button type="button" class="cancelbtn btn-danger">Cancel</button>
-      <a align="center" href="register.php" class="prompt-register">Click here to register</a>
     <br>
     </div>
     
