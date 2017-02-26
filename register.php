@@ -26,7 +26,13 @@
       <label><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
 
-      <button class="btn-success" type="submit">Login</button>
+      <label><b>Confirm Password</b></label>
+      <input type="password" placeholder="Confirm Password" name="psw" required>
+
+      <label><b>Country</b></label>
+      <input type="text" placeholder="Country" name="country" required>
+
+      <button class="btn-primary" type="submit">Register</button>
     </div>
 
     <div class="container">
