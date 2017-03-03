@@ -12,31 +12,57 @@
   <title>UrbanFork</title>
   <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/search.css" rel="stylesheet">
 </head>
 <body>
-  <?php echo $page_title;?>
-  
-  	<section class="searchbar">
+	
+	<?php echo $page_title;?>
+	
+	<form  method="post" action="search.php?go"  id="searchform"> 
+	<p class="text-center search-title">Search Restaurants</p>  
 		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-sm-offset-3">
-					<div class="input-group stylish-input-group">
-						<input type="text" class="form-control"  placeholder="Search" >
-						<span class="input-group-addon">
-							<button type="submit">
-								search
-								<!-- <span class="glyphicon glyphicon-search"></span>  glyphicon isn't working-->
-							</button>  
-						</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+			<input class = "center-bar" type="text" placeholder="Search..." name="query" required>
+	 
+			<button class="btn-primary" type="submit" name="submit">
+				<span class="glyphicon glyphicon-search"></span>
+			</button>
 		
-  
+		</div>
+	</form> 
+	
+	<?php
+		if(isset($_POST['submit'])){
+			if(isset($_GET['go'])){ 
+				$name=$_POST['query']; 
+				
+				$servername = 'localhost';
+				$username = 'root';
+				$pass = 'hello';
+				$db = 'restaurant';
+
+				// Create connection
+				// If connection has error, die
+				$conn = new mysqli($servername, $username, $pass, $db) or die  ("Could not connect :" . mysql_error());
+			
+			
+				$sql="SELECT * FROM restaurant WHERE location LIKE '%" . $name . "%' OR rname LIKE '%" . $name  ."%'"; 
+				$result = mysqli_query($conn, $sql) or die(mysqli_error());
+				while($row = mysqli_fetch_array($result)){
+					echo "<br>";
+					$location = $row['location'];
+					$rname = $row['rname'];
+					
+					echo "<br>";
+					echo $location;
+					echo "<br>";
+					echo $rname;
+				}
+			}
+		}
+		?>	
+	
   <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.js"></script>
+  <script src="js/bootstrap.js"></script>  
   <script>
     jQuery("#search").addClass("active");
   </script>
