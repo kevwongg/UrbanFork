@@ -37,7 +37,7 @@
 				$name=$_POST['query']; 
 			
 				$sql="SELECT * FROM restaurant WHERE location LIKE '%" . $name . "%' OR rname LIKE '%" . $name  ."%'"; 
-				$result = mysqli_query($conn, $sql) or die(mysqli_error());
+				$result = mysqli_query($con, $sql) or die(mysqli_error());
 				while($row = mysqli_fetch_array($result)){
 					echo "<br>";
 					$location = $row['location'];
