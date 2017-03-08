@@ -37,8 +37,8 @@
 				
 				$servername = 'localhost';
 				$username = 'root';
-				$pass = 'hello';
-				$db = 'restaurant';
+				$pass = '';
+				$db = 'urbanfork';
 
 				// Create connection
 				// If connection has error, die

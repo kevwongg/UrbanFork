@@ -20,8 +20,8 @@
       <h1 class="jumbotron-heading">UrbanFork</h1>
       <p class="lead text-muted">The place to search for good food!</p>
       <p>
-        <a href="#" class="btn btn-primary">Sign Up today</a>
-        <a href="#" class="btn btn-success">Search Restaurants</a>
+        <a href="register.php" class="btn btn-primary">Sign Up today</a>
+        <a href="search.php" class="btn btn-success">Search Restaurants</a>
       </p>
     </div>
   </section>
