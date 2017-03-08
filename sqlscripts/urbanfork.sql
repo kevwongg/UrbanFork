@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 08, 2017 at 08:00 AM
+-- Host: localhost
+-- Generation Time: Mar 08, 2017 at 09:01 PM
 -- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.28
+-- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -41,6 +41,27 @@ CREATE TABLE `loggedinuser` (
 
 INSERT INTO `loggedinuser` (`id`, `name`, `email`, `password`, `country`, `username`) VALUES
 (4, 'Tai Lopez', 'tai@gmail.com', 'test', 'Canada', 'tailopez');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `restaurant`
+--
+
+CREATE TABLE `restaurant` (
+  `location` varchar(50) NOT NULL,
+  `rname` varchar(50) NOT NULL,
+  `cuisine` varchar(30) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  `phone` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `restaurant`
+--
+
+INSERT INTO `restaurant` (`location`, `rname`, `cuisine`, `description`, `phone`) VALUES
+('1st Avenue', 'New Spaghetti Factory', 'Italian', 'Lots of great pasta and other Italian Food', '1234567');
 
 --
 -- Indexes for dumped tables
