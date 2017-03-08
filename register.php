@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<?php include 'database.php' ;?>
 <?php include("header.php");?>
 
 <html lang="en">
@@ -16,23 +16,31 @@
 </head>
 <body>
   <?php echo $page_title;?>
-  
-  <form id="form" action="action_page.php">
+  <?php if(isset($_GET['error'])) : ?>
+    <div class="error"><?php echo $_GET['error']; ?></div>
+  <?php endif; ?>
+  <form method="post" id="form" action="register_user.php">
   	<p class="text-center login-title">Register</p>
     <div class="container">
+      <label><b>Name</b></label>
+      <input type="text" placeholder="Enter Name" name="name" required>
+
       <label><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="uname" required>
 
+      <label><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+
       <label><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+      <input type="text" placeholder="Enter Password" name="psw" required>
 
       <label><b>Confirm Password</b></label>
-      <input type="password" placeholder="Confirm Password" name="psw" required>
+      <input type="text" placeholder="Confirm Password" name="psw2" required>
 
       <label><b>Country</b></label>
       <input type="text" placeholder="Country" name="country" required>
 
-      <button class="btn-primary" type="submit">Register</button>
+      <button class="btn-primary" type="submit" name="submit">Register</button>
     </div>
 
     <div class="container">
