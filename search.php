@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+<?php include("database.php");?>
 <?php include("header.php");?>
 
 <html lang="en">
@@ -34,16 +35,6 @@
 		if(isset($_POST['submit'])){
 			if(isset($_GET['go'])){ 
 				$name=$_POST['query']; 
-				
-				$servername = 'localhost';
-				$username = 'root';
-				$pass = '';
-				$db = 'urbanfork';
-
-				// Create connection
-				// If connection has error, die
-				$conn = new mysqli($servername, $username, $pass, $db) or die  ("Could not connect :" . mysql_error());
-			
 			
 				$sql="SELECT * FROM restaurant WHERE location LIKE '%" . $name . "%' OR rname LIKE '%" . $name  ."%'"; 
 				$result = mysqli_query($conn, $sql) or die(mysqli_error());
