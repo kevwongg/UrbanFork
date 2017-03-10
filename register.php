@@ -32,20 +32,15 @@
       <input type="text" placeholder="Enter Email" name="email" required>
 
       <label><b>Password</b></label>
-      <input type="text" placeholder="Enter Password" name="psw" required>
+      <input type="password" placeholder="Enter Password" name="psw" required>
 
       <label><b>Confirm Password</b></label>
-      <input type="text" placeholder="Confirm Password" name="psw2" required>
+      <input type="password" placeholder="Confirm Password" name="psw2" required>
 
       <label><b>Country</b></label>
       <input type="text" placeholder="Country" name="country" required>
 
       <button class="btn-primary" type="submit" name="submit">Register</button>
-    </div>
-
-    <div class="container">
-      <button type="button" class="cancelbtn btn-danger">Cancel</button>
-    <br>
     </div>
     
   </form>

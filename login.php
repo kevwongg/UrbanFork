@@ -30,7 +30,6 @@
     </div>
 
     <div class="container">
-      <button type="button" class="cancelbtn btn-danger">Cancel</button>
       <a align="center" href="register.php" class="prompt-register">Click here to register</a>
     <br>
     </div>
