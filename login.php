@@ -17,7 +17,7 @@
 <body>
   <?php echo $page_title;?>
   
-  <form id="form" action="action_page.php">
+  <form method="post" id="form" action="login_process.php">
   	<p class="text-center login-title">Login</p>
     <div class="container">
       <label><b>Username</b></label>
@@ -26,7 +26,7 @@
       <label><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
 
-      <button class="btn-primary" type="submit">Login</button>
+      <button class="btn-primary" type="submit" name="submit">Login</button>
     </div>
 
     <div class="container">

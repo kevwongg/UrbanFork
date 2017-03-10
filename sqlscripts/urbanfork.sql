@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2017 at 10:05 PM
+-- Generation Time: Mar 10, 2017 at 09:11 AM
 -- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- PHP Version: 5.6.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -42,8 +42,8 @@ CREATE TABLE `admin` (
 
 CREATE TABLE `admin_manages_restaurant` (
   `id` int(11) NOT NULL,
-  `rname` varchar(50) NOT NULL,
-  `location` varchar(50) NOT NULL
+  `location` varchar(50) NOT NULL,
+  `rname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -54,8 +54,8 @@ CREATE TABLE `admin_manages_restaurant` (
 
 CREATE TABLE `browses` (
   `id` int(11) NOT NULL,
-  `rname` varchar(50) NOT NULL,
-  `location` varchar(50) NOT NULL
+  `location` varchar(50) NOT NULL,
+  `rname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -66,8 +66,9 @@ CREATE TABLE `browses` (
 
 CREATE TABLE `contains` (
   `dishid` int(11) NOT NULL,
+  `location` varchar(50) NOT NULL,
   `rname` varchar(50) NOT NULL,
-  `location` varchar(50) NOT NULL
+  `type` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -102,8 +103,8 @@ INSERT INTO `dishes` (`dishid`, `dname`, `description`, `price`) VALUES
 
 CREATE TABLE `favourites` (
   `id` int(11) NOT NULL,
-  `rname` varchar(50) NOT NULL,
-  `location` varchar(50) NOT NULL
+  `location` varchar(50) NOT NULL,
+  `rname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -148,7 +149,8 @@ CREATE TABLE `loggedinuser` (
 --
 
 INSERT INTO `loggedinuser` (`id`, `name`, `email`, `password`, `country`, `username`) VALUES
-(4, 'Tai Lopez', 'tai@gmail.com', 'test', 'Canada', 'tailopez');
+(4, 'Tai Lopez', 'tai@gmail.com', 'test', 'Canada', 'tailopez'),
+(5, 'Kevin Wong', 'kevinw@test.com', 'password', 'Canada', 'kevinw');
 
 -- --------------------------------------------------------
 
@@ -159,8 +161,8 @@ INSERT INTO `loggedinuser` (`id`, `name`, `email`, `password`, `country`, `usern
 CREATE TABLE `maintains` (
   `listid` int(11) NOT NULL,
   `id` int(11) NOT NULL,
-  `rname` varchar(50) NOT NULL,
-  `location` varchar(50) NOT NULL
+  `location` varchar(50) NOT NULL,
+  `rname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -170,21 +172,10 @@ CREATE TABLE `maintains` (
 --
 
 CREATE TABLE `menu` (
-  `rname` varchar(50) NOT NULL,
+  `type` varchar(20) NOT NULL,
   `location` varchar(50) NOT NULL,
-  `type` varchar(20) NOT NULL
+  `rname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `menu`
---
-
-INSERT INTO `menu` (`rname`, `location`, `type`) VALUES
-('Mama John''s Pizza', '4th Avenue', 'lunch'),
-('New Spaghetti Factory', '1st Avenue', 'dinner'),
-('Pancake House', '2nd Avenue', 'breakfast'),
-('Sushi Land', '5th Avenue', 'lunch'),
-('The Keg 2', '3rd Avenue', 'dinner');
 
 -- --------------------------------------------------------
 
@@ -204,24 +195,11 @@ CREATE TABLE `publicuser` (
 
 CREATE TABLE `restaurant` (
   `location` varchar(50) NOT NULL,
-  `rname` varchar(50) NOT NULL,
   `cuisine` varchar(30) NOT NULL,
   `description` varchar(200) NOT NULL,
-  `phone` varchar(20) NOT NULL
+  `phone` varchar(20) NOT NULL,
+  `rname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `restaurant`
---
-
-INSERT INTO `restaurant` (`location`, `rname`, `cuisine`, `description`, `phone`) VALUES
-('1st Avenue', 'New Spaghetti Factory', 'Italian', 'Lots of great pasta and other Italian Food', '(111) 111-1111'),
-('2nd Avenue', 'Pancake House', 'American', 'Best pancakes ever', '(222) 222-2222'),
-('3rd Avenue', 'The Keg 2', 'American', 'We only use the best quality meat', '(333) 333-3333'),
-('4th Avenue', 'Mama John''s Pizza', 'Italian-American', 'We sell many different kinds of pizza at an affordable price', '(444) 444-4444'),
-('5th Avenue', 'Sushi land', 'Japanese', 'Authentic Japanese food with fresh ingredients', '(555) 555-5555'),
-('6th Avenue', 'Kimbap World', 'Korean', 'When you want to eat like a Kpopstar', '(666) 666-6666'),
-('7th Avenue', 'The Old Haus', 'German', 'Traditional German food served with beer', '(777) 777-7777');
 
 -- --------------------------------------------------------
 
@@ -235,8 +213,8 @@ CREATE TABLE `verifieduser` (
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `country` varchar(50) NOT NULL,
-  `rname` varchar(50) NOT NULL,
-  `location` varchar(50) NOT NULL
+  `location` varchar(50) NOT NULL,
+  `rname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -265,13 +243,22 @@ ALTER TABLE `admin`
 -- Indexes for table `admin_manages_restaurant`
 --
 ALTER TABLE `admin_manages_restaurant`
-  ADD PRIMARY KEY (`id`,`rname`,`location`);
+  ADD PRIMARY KEY (`id`,`location`,`rname`),
+  ADD KEY `location` (`location`,`rname`);
+
+--
+-- Indexes for table `browses`
+--
+ALTER TABLE `browses`
+  ADD PRIMARY KEY (`id`,`location`,`rname`),
+  ADD KEY `location` (`location`,`rname`);
 
 --
 -- Indexes for table `contains`
 --
 ALTER TABLE `contains`
-  ADD PRIMARY KEY (`dishid`,`rname`,`location`);
+  ADD PRIMARY KEY (`dishid`,`location`,`rname`,`type`),
+  ADD KEY `location` (`location`,`rname`,`type`);
 
 --
 -- Indexes for table `dishes`
@@ -283,7 +270,8 @@ ALTER TABLE `dishes`
 -- Indexes for table `favourites`
 --
 ALTER TABLE `favourites`
-  ADD PRIMARY KEY (`id`,`rname`,`location`);
+  ADD PRIMARY KEY (`id`,`location`,`rname`),
+  ADD KEY `location` (`location`,`rname`);
 
 --
 -- Indexes for table `listoffavourites`
@@ -302,14 +290,15 @@ ALTER TABLE `loggedinuser`
 -- Indexes for table `maintains`
 --
 ALTER TABLE `maintains`
-  ADD PRIMARY KEY (`listid`,`id`,`rname`,`location`);
+  ADD PRIMARY KEY (`listid`,`id`,`location`,`rname`),
+  ADD KEY `id` (`id`,`location`,`rname`);
 
 --
 -- Indexes for table `menu`
 --
 ALTER TABLE `menu`
-  ADD PRIMARY KEY (`rname`,`location`,`type`),
-  ADD KEY `rname` (`rname`,`location`);
+  ADD PRIMARY KEY (`type`,`location`,`rname`),
+  ADD KEY `location` (`location`,`rname`);
 
 --
 -- Indexes for table `publicuser`
@@ -329,13 +318,16 @@ ALTER TABLE `restaurant`
 --
 ALTER TABLE `verifieduser`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `location` (`location`,`rname`);
 
 --
 -- Indexes for table `vuser_edits_dishes`
 --
 ALTER TABLE `vuser_edits_dishes`
-  ADD PRIMARY KEY (`id`,`dishid`);
+  ADD PRIMARY KEY (`id`,`dishid`),
+  ADD KEY `id` (`id`),
+  ADD KEY `dishid` (`dishid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -347,15 +339,77 @@ ALTER TABLE `vuser_edits_dishes`
 ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `favourites`
+--
+ALTER TABLE `favourites`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `loggedinuser`
 --
 ALTER TABLE `loggedinuser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `verifieduser`
 --
 ALTER TABLE `verifieduser`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `admin_manages_restaurant`
+--
+ALTER TABLE `admin_manages_restaurant`
+  ADD CONSTRAINT `admin_manages_restaurant_ibfk_1` FOREIGN KEY (`id`) REFERENCES `admin` (`id`),
+  ADD CONSTRAINT `admin_manages_restaurant_ibfk_2` FOREIGN KEY (`location`,`rname`) REFERENCES `restaurant` (`location`, `rname`);
+
+--
+-- Constraints for table `browses`
+--
+ALTER TABLE `browses`
+  ADD CONSTRAINT `browses_ibfk_1` FOREIGN KEY (`id`) REFERENCES `publicuser` (`id`),
+  ADD CONSTRAINT `browses_ibfk_2` FOREIGN KEY (`location`,`rname`) REFERENCES `restaurant` (`location`, `rname`);
+
+--
+-- Constraints for table `contains`
+--
+ALTER TABLE `contains`
+  ADD CONSTRAINT `contains_ibfk_1` FOREIGN KEY (`dishid`) REFERENCES `dishes` (`dishid`),
+  ADD CONSTRAINT `contains_ibfk_2` FOREIGN KEY (`location`,`rname`,`type`) REFERENCES `menu` (`location`, `rname`, `type`);
+
+--
+-- Constraints for table `favourites`
+--
+ALTER TABLE `favourites`
+  ADD CONSTRAINT `favourites_ibfk_1` FOREIGN KEY (`location`,`rname`) REFERENCES `restaurant` (`location`, `rname`);
+
+--
+-- Constraints for table `maintains`
+--
+ALTER TABLE `maintains`
+  ADD CONSTRAINT `maintains_ibfk_1` FOREIGN KEY (`listid`) REFERENCES `listoffavourites` (`listid`),
+  ADD CONSTRAINT `maintains_ibfk_2` FOREIGN KEY (`id`,`location`,`rname`) REFERENCES `favourites` (`id`, `location`, `rname`);
+
+--
+-- Constraints for table `menu`
+--
+ALTER TABLE `menu`
+  ADD CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`location`,`rname`) REFERENCES `restaurant` (`location`, `rname`);
+
+--
+-- Constraints for table `verifieduser`
+--
+ALTER TABLE `verifieduser`
+  ADD CONSTRAINT `verifieduser_ibfk_1` FOREIGN KEY (`location`,`rname`) REFERENCES `restaurant` (`location`, `rname`);
+
+--
+-- Constraints for table `vuser_edits_dishes`
+--
+ALTER TABLE `vuser_edits_dishes`
+  ADD CONSTRAINT `vuser_edits_dishes_ibfk_1` FOREIGN KEY (`id`) REFERENCES `verifieduser` (`id`),
+  ADD CONSTRAINT `vuser_edits_dishes_ibfk_2` FOREIGN KEY (`dishid`) REFERENCES `dishes` (`dishid`);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
