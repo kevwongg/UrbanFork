@@ -7,15 +7,75 @@ or die('Error connecting to MySql server.');
 
 <html>
   <head> 
+
     <meta charset="utf-8">
     <title>UrbanFork</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 50%;
+      margin: auto;
+      }
+      </style>
+      </head>
+      <body>
+
+      <div class="container">
+      <br>
+
+    <div id="carousel_id" class="carousel slide" data-ride="carousel" data-interval="3000">
+        <!-- Indicatiors --> 
+        <ol class="carousel-indicators">
+        <li data-target="carousel_id" data-slide-to="0" class="active"></li>
+        <li data-target="carousel_id" data-slide-to="1"></li>
+        <li data-target="carousel_id" data-slide-to="2"></li>
+    </ol>
+
+    <div class="carousel-inner">
+    <div class="item active">
+    <img src="img/salmon.jpg" alt="Salmon">
+    <div class="carousel-caption">
+    <h3>Seafood</h3>
+    </div>
+    </div>
+
+    <div class="item">
+    <img src="img/noodles.jpg" alt="Ramen">
+    <div class="carousel-caption">
+    <h3>Ramen</h3>
+    </div>
+    </div>
+
+    <div class="item">
+    <img src="img/shrimp.jpg" alt="Shr">
+    <div class="carousel-caption">
+    <h3>Stir-fry</h3>
+    </div>
+    </div>
+
+
+    <a class="left carousel-control" href="#carousel-id" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#caoursel-id" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div>
+</div>
+</div>
+</body>
+
+
+
+
+   
     <body>
 
     <?php echo $page_title;?>
