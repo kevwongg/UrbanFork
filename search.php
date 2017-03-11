@@ -13,7 +13,7 @@
   <title>UrbanFork</title>
   <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  <link href="css/search.css" rel="stylesheet">
+  <link href="css/search.css" rel = "stylesheet">
 </head>
 <body>
 	
@@ -30,6 +30,24 @@
 		
 		</div>
 	</form> 
+
+	<form method="post" id = "filterButton" action="search.php">
+	<div id = "Checkbox_filters">
+		<table>
+			<tr>
+				<td>
+					<input type="radio" name="cuisine" value="chinese">Chinese
+					<input type="radio" name="cuisine" value="french">French
+					<input type="radio" name="cuisine" value="italian">Italian
+					<input type="radio" name="cuisine" value="korean">Korean
+					<input type="radio" name="cuisine" value="german">German
+					<input type="radio" name="cuisine" value="japanese">Japanese<br>
+					<button class = "filterbtn" type="submit" name = "applyFilters">Apply Filter</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+	</form>
 	
 	<?php
 		if(isset($_POST['submit'])){
@@ -37,21 +55,60 @@
 				$name=$_POST['query']; 
 			
 				$sql="SELECT * FROM restaurant WHERE location LIKE '%" . $name . "%' OR rname LIKE '%" . $name  ."%'"; 
-				$result = mysqli_query($con, $sql) or die(mysqli_error());
+				$result = mysqli_query($con, $sql) or die(mysqli_error($con));
 				while($row = mysqli_fetch_array($result)){
-					echo "<br>";
-					$location = $row['location'];
-					$rname = $row['rname'];
-					
-					echo "<br>";
-					echo $location;
-					echo "<br>";
-					echo $rname;
+					?>
+
+					<div class = "Output">
+						<?php
+						echo "<br>";
+						$location = $row['location'];
+						$rname = $row['rname'];
+						
+						echo "<br>";
+						echo "<div class='location_output'>{$rname}</div>";
+						echo "<div class='rname_output'>{$location}</div>";
+						?>
+					</div>
+					<?php
 				}
 			}
 		}
-		?>	
-	
+		
+		// Filters data according to cuisine using radio buttons
+		if(isset($_POST['applyFilters'])){
+			if (!empty($_POST['cuisine'])){
+				$name = $_POST['cuisine'];
+				$sql="SELECT * FROM restaurant WHERE cuisine LIKE '%". $name. "%'";
+				$result = mysqli_query($con, $sql) or die(mysqli_error($con));
+				
+				while($row = mysqli_fetch_array($result)){
+					?>
+
+					<div class = "Output">
+						<?php
+						echo "<br>";
+						$location = $row['location'];
+						$rname = $row['rname'];
+						
+						echo "<br>";
+						echo "<div class='location_output'>{$rname}</div>";
+						echo "<div class='rname_output'>{$location}</div>";
+						?>
+					</div>
+					<?php
+				}
+			}
+			else{
+				?>
+				<script type="text/javascript">
+					alert("Please choose one of the filter options")
+				</script>
+				<?php
+			}
+		}
+		?>
+		
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.js"></script>  
   <script>

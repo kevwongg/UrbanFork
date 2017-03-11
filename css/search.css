@@ -1,9 +1,8 @@
 /* Bordered form */
 
 form{
-	 border: 3px solid #f1f1f1;
+	 border: 0px solid #f1f1f1;
 }
-
 
 input{
     width: 50%;
@@ -23,6 +22,9 @@ button {
     border: none;
     cursor: pointer;
 }
+.filterbtn{
+	margin-left: 75px;
+}
 
 
 body{
@@ -32,3 +34,26 @@ body{
 	font-size: 200%;
 }
 
+.location_output{
+    margin-top: 5px;
+    padding: 5px;
+    width: auto;
+	text-align: center;
+}
+
+
+.rname_output{
+    margin-top: 0px;
+    padding: 5px;
+    width: auto;
+	text-align: center;
+}
+
+.Output {
+    margin-top: 5px;
+	margin-bottom: 5px;
+	margin: auto;
+    padding: 16px;
+	font-size: 200%;
+	width: 50%;
+}
