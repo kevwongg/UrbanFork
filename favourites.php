@@ -20,24 +20,34 @@ or die('Error connecting to MySql server.');
 
     <?php echo $page_title;?>
 
+
+
     <div class="container">
     <div class="jumbotron">
         <h1>My Favourites</h1>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Favourite More Restaurants</a>
+        <p>All your favourited restaurants displayed here! </p>
+        <p><a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/search.php" role="button">Favourite More Restaurants</a>
         </p>
         </div>
+        <table align="center" border="1" width="100%">
+        <tr>
+        <th>List Name</th>
+        </tr>
     <?php
-    $query = "SELECT * FROM listoffavourites";
-    mysqli_query($db, $query) or die('Error querying database.');
-    
+    $query = "SELECT listname FROM listoffavourites INNER JOIN maintains INNER JOIN favourites ON listoffavourites.listid = maintains.listid AND favourites.id = maintains.id";
 
-    $result = mysqli_query($db, $query);
-    $row = mysqli_fetch_array($result);
-
+    $result = mysqli_query($db, $query) or die(mysqli_error());
     while($row = mysqli_fetch_array($result)){
-      echo $row['listname'] . '<br />';
+        echo "<br>";
+        $listname = $row['listname'];
+
+        ?> 
+        <tr>
+        <td><p><?php echo $listname; ?></p></td>
+        <?php
 
     }
+
 
     mysqli_close($db);
 

@@ -106,6 +106,10 @@ CREATE TABLE `favourites` (
   `location` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--- Dummy data for Favourites 
+
+INSERT INTO 'favourites' ('id', 'rname', 'location') VALUES 
+(4, 'Pancake House', '2nd Avenue');
 -- --------------------------------------------------------
 
 --
@@ -162,6 +166,12 @@ CREATE TABLE `maintains` (
   `rname` varchar(50) NOT NULL,
   `location` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dummy data 
+---
+
+INSERT INTO 'maintains' ('listid', 'id', 'rname', 'location') VALUES 
+(6762321, 4, 'Pancake House', '2nd Avenue');
 
 -- --------------------------------------------------------
 
