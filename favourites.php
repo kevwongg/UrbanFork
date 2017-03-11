@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php include("header.php");?>
+
 <?php 
 $db = mysqli_connect('localhost', "root", "",'urbanfork')
 or die('Error connecting to MySql server.');
