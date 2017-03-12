@@ -36,13 +36,15 @@
 		<table>
 			<tr>
 				<td>
-					<input type="radio" name="cuisine" value="chinese">Chinese
-					<input type="radio" name="cuisine" value="french">French
-					<input type="radio" name="cuisine" value="italian">Italian
-					<input type="radio" name="cuisine" value="korean">Korean
-					<input type="radio" name="cuisine" value="german">German
-					<input type="radio" name="cuisine" value="japanese">Japanese<br>
-					<button class = "filterbtn" type="submit" name = "applyFilters">Apply Filter</button>
+					<div id = "filterSection">
+						<input type="radio" name="cuisine" value="chinese">Chinese
+						<input type="radio" name="cuisine" value="french">French
+						<input type="radio" name="cuisine" value="italian">Italian
+						<input type="radio" name="cuisine" value="korean">Korean
+						<input type="radio" name="cuisine" value="german">German
+						<input type="radio" name="cuisine" value="japanese">Japanese<br>
+						<button class = "filterbtn" type="submit" name = "applyFilters">Apply Filter</button>
+					</div>
 				</td>
 			</tr>
 		</table>
@@ -50,12 +52,7 @@
 	</form>
 	
 	<?php
-		if(isset($_POST['submit'])){
-			if(isset($_GET['go'])){ 
-				$name=$_POST['query']; 
-			
-				$sql="SELECT * FROM restaurant WHERE location LIKE '%" . $name . "%' OR rname LIKE '%" . $name  ."%'"; 
-				$result = mysqli_query($con, $sql) or die(mysqli_error($con));
+		function displayOutput($result){
 				while($row = mysqli_fetch_array($result)){
 					?>
 
@@ -65,13 +62,31 @@
 						$location = $row['location'];
 						$rname = $row['rname'];
 						
+						$fileName = str_replace(' ', '', $location.$rname);
+						
+						$imagePath = "./img/searchImage/".$fileName.".jpg";
 						echo "<br>";
+						?>
+						<div class = "image">
+							<img src= <?php echo $imagePath ?> alt="Test" style="width:304px;height:228px;">
+						</div>
+						<?php
 						echo "<div class='location_output'>{$rname}</div>";
 						echo "<div class='rname_output'>{$location}</div>";
 						?>
 					</div>
 					<?php
 				}
+			
+		}
+		if(isset($_POST['submit'])){
+			if(isset($_GET['go'])){ 
+				$name=$_POST['query']; 
+			
+				$sql="SELECT * FROM restaurant WHERE location LIKE '%" . $name . "%' OR rname LIKE '%" . $name  ."%'"; 
+				$result = mysqli_query($con, $sql) or die(mysqli_error($con));
+				
+				displayOutput($result);
 			}
 		}
 		
@@ -82,22 +97,7 @@
 				$sql="SELECT * FROM restaurant WHERE cuisine LIKE '%". $name. "%'";
 				$result = mysqli_query($con, $sql) or die(mysqli_error($con));
 				
-				while($row = mysqli_fetch_array($result)){
-					?>
-
-					<div class = "Output">
-						<?php
-						echo "<br>";
-						$location = $row['location'];
-						$rname = $row['rname'];
-						
-						echo "<br>";
-						echo "<div class='location_output'>{$rname}</div>";
-						echo "<div class='rname_output'>{$location}</div>";
-						?>
-					</div>
-					<?php
-				}
+				displayOutput($result);
 			}
 			else{
 				?>

@@ -22,8 +22,13 @@ button {
     border: none;
     cursor: pointer;
 }
+
 .filterbtn{
 	margin-left: 75px;
+}
+
+#filterSection{
+	float: left;
 }
 
 
@@ -50,10 +55,15 @@ body{
 }
 
 .Output {
+	float: left;
     margin-top: 5px;
 	margin-bottom: 5px;
-	margin: auto;
     padding: 16px;
 	font-size: 200%;
 	width: 50%;
 }
+
+.image{
+	margin-left: 172px;
+}
+
