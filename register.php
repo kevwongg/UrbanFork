@@ -26,7 +26,8 @@
             <p><?php echo $error ?></p>
         <?php endforeach; ?>
     </div>
-    <?php endif; ?>
+    <?php endif;
+    unset($_SESSION['errors']); ?>
     <div class="container">
       <label><b>Name</b></label>
       <input type="text" placeholder="Enter Name" name="name" required>
