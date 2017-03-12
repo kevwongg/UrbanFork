@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<?php include 'database.php' ;?>
-<?php include("header.php");?>
 
+<?php include("header.php");?>
+<?php include 'database.php' ;?>
+<?php session_start(); ?>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -16,11 +17,16 @@
 </head>
 <body>
   <?php echo $page_title;?>
-  <?php if(isset($_GET['error'])) : ?>
-    <div class="error"><?php echo $_GET['error']; ?></div>
-  <?php endif; ?>
+  
   <form method="post" id="form" action="register_user.php">
   	<p class="text-center login-title">Register</p>
+    <?php if (isset($_SESSION['errors'])): ?>
+    <div class="form-errors text-center">
+        <?php foreach($_SESSION['errors'] as $error): ?>
+            <p><?php echo $error ?></p>
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
     <div class="container">
       <label><b>Name</b></label>
       <input type="text" placeholder="Enter Name" name="name" required>

@@ -2,7 +2,7 @@
 // Connect to MySQL
 $con = mysqli_connect("localhost",
 	"root",	// user name
-	"password",	// password
+	"",	// password
 	"urbanfork");
 
 //Test Connection
