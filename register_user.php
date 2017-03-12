@@ -29,7 +29,7 @@ if(isset($_POST['submit'])){
 			die('Error: '.mysqli_error($con));
 		} 
 		else {
-			$_SESSION['errors'] = array("Success!");
+			$_SESSION['success'] = array("Success!");
 			header("Location:register.php");
 			exit();
 		}

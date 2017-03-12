@@ -28,6 +28,16 @@
     </div>
     <?php endif;
     unset($_SESSION['errors']); ?>
+
+    <?php if (isset($_SESSION['success'])): ?>
+    <div class="form-success text-center">
+        <?php foreach($_SESSION['success'] as $error): ?>
+            <p><?php echo $error ?></p>
+        <?php endforeach; ?>
+    </div>
+    <?php endif;
+    unset($_SESSION['success']); ?>
+
     <div class="container">
       <label><b>Name</b></label>
       <input type="text" placeholder="Enter Name" name="name" required>
