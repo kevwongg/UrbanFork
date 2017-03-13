@@ -54,3 +54,13 @@ body{
 .login-title{
 	font-size: 200%;
 }
+
+.form-errors{
+    background-color: #D9534F;
+    width: 100%;
+    padding: 2px 9px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}

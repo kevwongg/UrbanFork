@@ -20,6 +20,7 @@
   
   <form method="post" id="form" action="register_user.php">
   	<p class="text-center login-title">Register</p>
+    
     <?php if (isset($_SESSION['errors'])): ?>
     <div class="form-errors text-center">
         <?php foreach($_SESSION['errors'] as $error): ?>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-
-<?php include("header.php");?>
+<?php 
+session_start();
+include("header.php");?>
 
 <html lang="en">
 <head>
@@ -19,9 +20,19 @@
   
   <form method="post" id="form" action="login_process.php">
   	<p class="text-center login-title">Login</p>
+
+  	<?php if (isset($_SESSION['errors'])): ?>
+    <div class="form-errors text-center">
+        <?php foreach($_SESSION['errors'] as $error): ?>
+            <p><?php echo $error ?></p>
+        <?php endforeach; ?>
+    </div>
+    <?php endif;
+    unset($_SESSION['errors']); ?>
+
     <div class="container">
-      <label><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+      <label><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
 
       <label><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
