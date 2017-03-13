@@ -19,8 +19,9 @@ if(isset($_POST['submit'])){
 			header("Location:login.php");
 			exit();
 		}
-        $username = "SELECT id FROM loggedinuser WHERE email = '$email' AND password = '$password'";
-        $_SESSION['username'] = $username; 
+        $username = mysqli_query($con, "SELECT id FROM loggedinuser WHERE email = '$email' AND password = '$password'") /*or die($mysqli->error())*/;
+        $row = mysqli_fetch_assoc($username); 
+        $_SESSION['username'] = $row['id'];
         header("Location: index.php");
 	}
 }

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
-<?php include("header.php");?>
+<?php 
+session_start();
+include("header.php");?>
 
 <html lang="en">
 <head>
@@ -14,7 +16,9 @@
   <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-  <?php echo $page_title;?>
+  <?php 
+  echo $_SESSION['username'];
+  echo $page_title;?>
   <section class="jumbotron text-center">
     <div class="container">
       <h1 class="jumbotron-heading">UrbanFork</h1>
