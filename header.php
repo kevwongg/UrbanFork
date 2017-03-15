@@ -18,7 +18,7 @@ $page_title = <<<EOD
       <li id="login" ><a href="login.php">Login/Register</a></li>
       <li id="search"><a href="search.php">Search Restaurants</a></li>
       <li id="Favourites"><a href="Favourites.php">Favourites</a></li>
-      <li><a href="#">Logout</a></li>
+      <li><a href="logout.php">Logout</a></li>
     </ul>
 
     </div>
