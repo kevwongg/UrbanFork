@@ -17,7 +17,7 @@ include("header.php");?>
 </head>
 <body>
   <?php 
-  echo $_SESSION['username'];
+  // echo $_SESSION['username'];
   echo $page_title;?>
   <section class="jumbotron text-center">
     <div class="container">
@@ -33,36 +33,57 @@ include("header.php");?>
     <div class="container">
       <div class="row">
         <div class="card">
-          <img src="img/chinese.jpg" class="img-responsive" alt="Card image cap">
+		  <a href = "search.php" class = "cardhref" id = "chinese">
+			<img src="img/chinese.jpg" class="img-responsive" alt="Card image cap">
+		  </a>
           <p class="card-text text-center">Chinese</p>
         </div>
+		
         <div class="card">
-          <img src="img/french.jpg" class="img-responsive" alt="Card image cap">
+		  <a href = "search.php" class = "cardhref" onclick = "filterPage('french');">
+			<img src="img/french.jpg" class="img-responsive" alt="Card image cap">
+		  </a>
           <p class="card-text text-center">French</p>
         </div>
+		
         <div class="card">
-          <img src="img/italian.jpg" class="img-responsive" alt="Card image cap">
+		  <a href = "search.php" class = "cardhref" onclick = "filterPage('italian');">
+			<img src="img/italian.jpg" class="img-responsive" alt="Card image cap">
+		  </a>
           <p class="card-text text-center">Italian</p>
         </div>
+		
         <div class="card">
-          <img src="img/korean.jpg" class="img-responsive" alt="Card image cap">
+		  <a href = "search.php" class = "cardhref" onclick = "filterPage('korean');">
+			<img src="img/korean.jpg" class="img-responsive" alt="Card image cap">
+		  </a>
           <p class="card-text text-center">Korean</p>
         </div>
+		
         <div class="card">
-          <img src="img/german.jpg" class="img-responsive" alt="Card image cap">
+		  <a href = "search.php" class = "cardhref" onclick = "filterPage('german');">
+			<img src="img/german.jpg" class="img-responsive" alt="Card image cap">
+		  </a>
           <p class="card-text text-center">German</p>
         </div>
+		
         <div class="card">
-          <img src="img/japanese.jpg" class="img-responsive" alt="Card image cap">
+		  <a href = "search.php" class = "cardhref" onclick = "filterPage('japanese');">
+			<img src="img/japanese.jpg" class="img-responsive" alt="Card image cap">
+		  </a>
           <p class="card-text text-center">Japanese</p>
         </div>
       </div>
     </div>
   </div>
+  
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.js"></script>
   <script>
     jQuery("#home").addClass("active");
   </script>
+  
+
+  
 </body>
 </html>
