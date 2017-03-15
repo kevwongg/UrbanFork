@@ -2,7 +2,7 @@
 
 <?php include("header.php");?>
 <?php include 'database.php' ;?>
-<?php session_start(); ?>
+<!-- <?php session_start(); ?> -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -16,7 +16,6 @@
   <link href="css/register.css" rel="stylesheet">
 </head>
 <body>
-  <?php echo $page_title;?>
   
   <form method="post" id="form" action="register_user.php">
   	<p class="text-center login-title">Register</p>

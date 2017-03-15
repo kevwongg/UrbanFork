@@ -17,8 +17,6 @@
 </head>
 <body>
 	
-	<?php echo $page_title;?>
-	
 	<form  method="post" action="search.php?go"  id="searchform"> 
 	<p class="text-center search-title">Search Restaurants</p>  
 		<div class="container">

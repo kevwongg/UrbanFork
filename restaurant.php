@@ -13,13 +13,9 @@
   <title>UrbanFork</title>
   <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  <link href="css/search.css" rel="stylesheet">
 </head>
 <body>
 	
-	<?php echo $page_title;?>
-
-
 	<?php
 		$rname = $_GET['rname'];
 		// echo $rname;
