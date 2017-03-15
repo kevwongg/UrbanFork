@@ -17,16 +17,19 @@ include("header.php");?>
 </head>
 <body>
   <?php 
-  // echo $_SESSION['username'];
   echo $page_title;?>
   <section class="jumbotron text-center">
     <div class="container">
       <h1 class="jumbotron-heading">UrbanFork</h1>
       <p class="lead text-muted">The place to search for good food!</p>
-      <p>
-        <a href="register.php" class="btn btn-primary">Sign Up today</a>
+      <?php if (isset($_SESSION['username'])): ?>
         <a href="search.php" class="btn btn-success">Search Restaurants</a>
-      </p>
+      <?php else: ?>
+        <p>
+          <a href="register.php" class="btn btn-primary">Sign Up today</a>
+          <a href="search.php" class="btn btn-success">Search Restaurants</a>
+        </p>
+      <?php endif; ?>
     </div>
   </section>
   <div class="album text-muted">

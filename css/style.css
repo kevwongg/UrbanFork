@@ -50,6 +50,10 @@ body {
   margin-bottom: .75rem;
 }
 
+.card > a img {
+	margin-bottom: .75rem;
+}
+
 .card-text {
   font-size: 150%;
   background-color: #7EC0EE;
