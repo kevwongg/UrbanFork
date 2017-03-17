@@ -19,40 +19,44 @@
 	
 	<?php echo $page_title;?>
 	
-	<form  method="post" action="search.php?go"  id="searchform"> 
-	<p class="text-center search-title">Search Restaurants</p>  
-		<div class="container">
-			<input id = "center-bar" class = "center-bar" type="text" placeholder="Search..." name="query" required>
-	 
-			<button class="btn-primary" type="submit" name="submit">
-				<span class="glyphicon glyphicon-search"></span>
-			</button>
-		
-		</div>
-	</form>
-	<form method="post" id = "filter" action= "search.php">
-		<div id = "filterSection">
-		<p class = "sectionHead" >Choose Cuisine</p>
-			<input type="radio" name="cuisine" value="chinese">  Chinese<br>
-			<input type="radio" name="cuisine" value="french">  French<br>
-			<input type="radio" name="cuisine" value="italian">  Italian<br>
-			<input type="radio" name="cuisine" value="korean">  Korean<br>
-			<input type="radio" name="cuisine" value="german">  German<br>
-			<input type="radio" name="cuisine" value="japanese">  Japanese<br>
-			<button class = "filterbtn" type="submit" name = "applyFilters">Apply Filter</button>
-		</div>
-	</form>
-	
-	<form method ="post" id = "options" action = "search.php">
-		<div id = "additionalOption">
-			<p class = "sectionHead" >Additional Information</p>
-			<input type="checkbox" name="checkCuisine" value="cuisine">   Cuisine<br>
-			<input type="checkbox" name="checkPhone" value="phone-number">  Phone number<br>
-			<input type="checkbox" name="checkDes" value="description">  Description<br>
+	<div id = "inputContainer">
+		<form  method="post" action="search.php?go"  id="searchform"> 
+		<p class="text-center search-title">Search Restaurants</p>  
+			<div class="container">
+				<input id = "center-bar" class = "center-bar" type="text" placeholder="Search..." name="query" required>
+				<button class="btn-primary" type="submit" name="submit">
+					<span class="glyphicon glyphicon-search"></span>
+				</button>
+			</div>
 			
-		</div>
-	</form>
-	
+						
+			<form method="post" id = "options">
+				<div id = "additionalOption">
+					<p class = "sectionHead" >Additional Information</p>
+					<input type="checkbox" name="checkCuisine" value="cuisine">   Cuisine<br>
+					<input type="checkbox" name="checkPhone" value="phone-number">  Phone number<br>
+					<input type="checkbox" name="checkDes" value="description">  Description<br>
+				</div>
+			</form>
+			
+			
+		</form>
+		<form method="post" id = "filter" action= "search.php">
+			<div id = "filterSection">
+			<p class = "sectionHead" >Choose Cuisine</p>
+				<input type="radio" name="cuisine" value="chinese">  Chinese<br>
+				<input type="radio" name="cuisine" value="french">  French<br>
+				<input type="radio" name="cuisine" value="italian">  Italian<br>
+				<input type="radio" name="cuisine" value="korean">  Korean<br>
+				<input type="radio" name="cuisine" value="german">  German<br>
+				<input type="radio" name="cuisine" value="japanese">  Japanese<br>
+				<button class = "filterbtn" type="submit" name = "applyFilters">Apply Filter</button>
+			</div>
+			
+
+		</form>
+	</div>
+
 
 	<?php
 	// TODO: Maybe change the code so user can select what should be displayed?
@@ -71,31 +75,42 @@
 					
 					$fileName = str_replace(' ', '', $location.$rname);
 					
+					$hrefRname = str_replace(' ', '%20', $rname);
+					$hrefLoc = str_replace(' ', '%20', $location);
+					
+					$hrefPath = "http://localhost/Urbanfork/restaurant.php?rname=".$hrefRname."&location=".$hrefLoc;
+					
 					$imagePath = "./img/searchImage/".$fileName.".jpg";
 					echo "<br>";
 					?>
 					
+					
+					
 					<div class = "image">
-						<img src= <?php echo $imagePath ?> alt="Test" style="width:304px;height:228px;">
+						<a href = <?php echo $hrefPath ?>>
+							<img src= <?php echo $imagePath ?> alt="Test" style="width:304px;height:228px;">
+						</a>
 					</div>
+											
+						
+					<div class = "row">
+						<div class = "col text_output"> <?php echo $rname ?> </div>
+						<div class = "col text_output"> <?php echo $location ?> </div>
+					</div>
+				
 					
 					<?php
-					echo "<div class='rname_output'>{$rname}</div>";
-					echo "<div class='location_output'>{$location}</div>";
 					
 					if(isset($_POST['checkCuisine'])){
-						echo "<div class='rname_output'>{$cuisine}</div>";
-					}	
+						echo "<div class='text_output'>{$cuisine}</div>";
+					}
 					if(isset($_POST['checkPhone'])){
-						echo "<div class='rname_output'>{$phone}</div>";
+						echo "<div class='text_output'>{$phone}</div>";
 					}
-						
 					if(isset($_POST['checkDes'])){
-						echo "<div class='rname_output'>{$des}</div>";
+						echo "<div class='text_output'>{$des}</div>";
 					}
-					
-					
-					
+			
 					echo "</div>";
 					
 					?>
@@ -134,6 +149,7 @@
 			}
 		}
 		?>
+
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.js"></script>  
   <script>
