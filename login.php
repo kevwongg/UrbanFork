@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php 
-session_start();
+// session_start();
 include("header.php");?>
 
 <html lang="en">
@@ -16,7 +16,6 @@ include("header.php");?>
   <link href="css/login.css" rel="stylesheet">
 </head>
 <body>
-  <?php echo $page_title;?>
   
   <form method="post" id="form" action="login_process.php">
   	<p class="text-center login-title">Login</p>

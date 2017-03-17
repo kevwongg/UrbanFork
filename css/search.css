@@ -55,8 +55,7 @@ body{
 	font-size: 200%;
 }
 
-
-.location_output{
+.text_output{
     margin-top: 5px;
     padding: 5px;
     width: auto;
@@ -64,26 +63,16 @@ body{
 }
 
 
-.rname_output{
-    margin-top: 0px;
-    padding: 5px;
-    width: auto;
-	text-align: center;
-}
-
 .Output {
-	border: 1px solid;
 	float: left;
     margin-top: 5px;
 	margin-bottom: 5px;
     padding: 16px;
 	font-size: 200%;
 	width: 50%;
+	text-align: center;
 }
 
-.image{
-	margin-left: 135px;
-}
 
 .sectionHead{
 	font-size: 150%;

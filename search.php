@@ -17,8 +17,8 @@
 </head>
 <body>
 	
-	<?php echo $page_title;?>
-	
+
+
 	<div id = "inputContainer">
 		<form  method="post" action="search.php?go"  id="searchform"> 
 		<p class="text-center search-title">Search Restaurants</p>  
@@ -28,9 +28,7 @@
 					<span class="glyphicon glyphicon-search"></span>
 				</button>
 			</div>
-			
-						
-			<form method="post" id = "options">
+		<form method="post" id = "options">
 				<div id = "additionalOption">
 					<p class = "sectionHead" >Additional Information</p>
 					<input type="checkbox" name="checkCuisine" value="cuisine">   Cuisine<br>
