@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-<?php include("header.php");?>
+<?php include("header.php");
+include ("database.php");?>
 
-<?php 
-$db = mysqli_connect('localhost', "root", "",'urbanfork')
-or die('Error connecting to MySql server.');
-?>
 
 <html>
   <head> 
@@ -95,9 +92,12 @@ or die('Error connecting to MySql server.');
         <th>List Name</th>
         </tr>
     <?php
-    $query = "SELECT listname FROM listoffavourites INNER JOIN maintains INNER JOIN favourites ON listoffavourites.listid = maintains.listid AND favourites.id = maintains.id";
+    session_start();
+    $username = $_SESSION['username'];
+    echo $username;
+    $query = "SELECT listname FROM listoffavourites INNER JOIN maintains INNER JOIN favourites ON listoffavourites.listid = maintains.listid AND favourites.id = maintains.id AND maintains.id=$username";
 
-    $result = mysqli_query($db, $query) or die(mysqli_error());
+    $result = mysqli_query($con, $query) or die("Error");
     while($row = mysqli_fetch_array($result)){
         echo "<br>";
         $listname = $row['listname'];
@@ -110,7 +110,7 @@ or die('Error connecting to MySql server.');
     }
 
 
-    mysqli_close($db);
+    mysqli_close($con);
 
     ?>
     </div>
