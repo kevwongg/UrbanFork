@@ -15,9 +15,10 @@
     <ul class="nav navbar-nav navbar-right">
       <li id="home"><a href="index.php">Home</a></li>
       <li id="search"><a href="search.php">Search Restaurants</a></li>
-      <li id="Favourites"><a href="Favourites.php">Favourites</a></li>
+      
       <?php
         if (isset($_SESSION['username'])) {
+          echo '<li id="Favourites"><a href="Favourites.php">Favourites</a></li>';
           echo '<li><a href="logout.php">Logout</a></li>';        
         } else {
           echo '<li id="login" ><a href="login.php">Login/Register</a></li>';  
