@@ -5,6 +5,9 @@ form{
 }
 
 input{
+}
+
+.center-bar{
     width: 50%;
     padding: 12px 20px;
 	margin-left: 250px;
@@ -24,12 +27,25 @@ button {
 }
 
 .filterbtn{
-	margin-left: 75px;
 }
+
 
 #filterSection{
 	float: left;
+	margin-top: 100px;
+	margin-left: 300px;
+	height: 250px;
+	overflow:auto;
 }
+
+#additionalOption{
+	float: right;
+	margin-top: 100px;
+	margin-right: 300px;
+	height: 250px;
+	overflow:auto;
+}
+
 
 
 body{
@@ -39,20 +55,13 @@ body{
 	font-size: 200%;
 }
 
-.location_output{
+.text_output{
     margin-top: 5px;
     padding: 5px;
     width: auto;
 	text-align: center;
 }
 
-
-.rname_output{
-    margin-top: 0px;
-    padding: 5px;
-    width: auto;
-	text-align: center;
-}
 
 .Output {
 	float: left;
@@ -61,9 +70,10 @@ body{
     padding: 16px;
 	font-size: 200%;
 	width: 50%;
+	text-align: center;
 }
 
-.image{
-	margin-left: 172px;
-}
 
+.sectionHead{
+	font-size: 150%;
+}
