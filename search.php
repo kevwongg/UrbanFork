@@ -28,17 +28,29 @@
 					<span class="glyphicon glyphicon-search"></span>
 				</button>
 			</div>
-		<form method="post" id = "options">
-				<div id = "additionalOption">
-					<p class = "sectionHead" >Additional Information</p>
-					<input type="checkbox" name="checkCuisine" value="cuisine">   Cuisine<br>
-					<input type="checkbox" name="checkPhone" value="phone-number">  Phone number<br>
-					<input type="checkbox" name="checkDes" value="description">  Description<br>
-				</div>
-			</form>
 			
 			
+			<div id = "additionalOption">
+				<p class = "sectionHead" >Additional Information</p>
+				<input type="checkbox" name="checkCuisine" value="cuisine">   Cuisine<br>
+				<input type="checkbox" name="checkPhone" value="phone-number">  Phone number<br>
+				<input type="checkbox" name="checkDes" value="description">  Description<br>
+			</div>
+		
+			<div id = "filterSection">
+			<p class = "sectionHead" >Choose Cuisine</p>
+				<input type="radio" name="cuisine" value="chinese">  Chinese<br>
+				<input type="radio" name="cuisine" value="french">  French<br>
+				<input type="radio" name="cuisine" value="italian">  Italian<br>
+				<input type="radio" name="cuisine" value="korean">  Korean<br>
+				<input type="radio" name="cuisine" value="german">  German<br>
+				<input type="radio" name="cuisine" value="japanese">  Japanese<br>
+			</div>
+			
+				
 		</form>
+		
+		<!--
 		<form method="post" id = "filter" action= "search.php">
 			<div id = "filterSection">
 			<p class = "sectionHead" >Choose Cuisine</p>
@@ -50,9 +62,8 @@
 				<input type="radio" name="cuisine" value="japanese">  Japanese<br>
 				<button class = "filterbtn" type="submit" name = "applyFilters">Apply Filter</button>
 			</div>
-			
-
 		</form>
+		-->
 	</div>
 
 
@@ -60,16 +71,14 @@
 	// TODO: Maybe change the code so user can select what should be displayed?
 		function displayOutput($result){
 				while($row = mysqli_fetch_array($result)){
-					
 					echo "<div class = 'Output'>";
 					
 					echo "<br>";
-					$location = $row['location'];
-					$rname = $row['rname'];
-					$cuisine = $row['cuisine'];
-					$phone = $row['phone'];
-					$des = $row['description'];
 					
+					$row = (array_unique($row, SORT_STRING));
+					
+					$rname = $row[0];
+					$location = $row[1];
 					
 					$fileName = str_replace(' ', '', $location.$rname);
 					
@@ -89,30 +98,18 @@
 							<img src= <?php echo $imagePath ?> alt="Test" style="width:304px;height:228px;">
 						</a>
 					</div>
-											
+					
 						
 					<div class = "row">
-						<div class = "col text_output"> <?php echo $rname ?> </div>
-						<div class = "col text_output"> <?php echo $location ?> </div>
+						<div class = "col text_output"> <?php foreach($row as $value){echo $value; echo "<br>";} ?> </div>
 					</div>
 				
 					
 					<?php
-					
-					if(isset($_POST['checkCuisine'])){
-						echo "<div class='text_output'>{$cuisine}</div>";
-					}
-					if(isset($_POST['checkPhone'])){
-						echo "<div class='text_output'>{$phone}</div>";
-					}
-					if(isset($_POST['checkDes'])){
-						echo "<div class='text_output'>{$des}</div>";
-					}
-			
 					echo "</div>";
 					
-					?>
-					<?php
+					
+					
 				}
 			
 		}
@@ -120,34 +117,36 @@
 		if(isset($_POST['submit'])){
 			if(isset($_GET['go'])){
 				$name=$_POST['query'];
-			
-				$sql="SELECT * FROM restaurant WHERE location LIKE '%" . $name . "%' OR rname LIKE '%" . $name  ."%'"; 
-				$result = mysqli_query($con, $sql) or die(mysqli_error($con));
 				
-				displayOutput($result);
+				$select_string = " rname, location";
+						
+				if(isset($_POST['checkCuisine'])){
+					$select_string = $select_string.", cuisine";
+				}
+				if(isset($_POST['checkPhone'])){
+					$select_string = $select_string.", phone";
+				}
+				if(isset($_POST['checkDes'])){
+					$select_string = $select_string.", description";
+				}
+				
+				
+				if(isset($_POST['cuisine'])){
+					$cuisine_name = $_POST['cuisine'];
+					$sql = "(SELECT".$select_string." FROM restaurant WHERE cuisine LIKE '%".$cuisine_name."%')";
+					$result = mysqli_query($con, $sql) or die(mysqli_error($con));
+					displayOutput($result);
+				}
+				else if(!isset($_POST['cuisine'])){
+					$sql="SELECT" . $select_string . " FROM restaurant WHERE location LIKE '%" . $name . "%' OR rname LIKE '%" . $name  ."%'"; 
+					$result = mysqli_query($con, $sql) or die(mysqli_error($con));
+					displayOutput($result);
+				}				
+				
 			}
 		}
+	?>
 		
-		
-		// Filters data according to cuisine using radio buttons
-		if(isset($_POST['applyFilters'])){
-			if (isset($_POST['cuisine'])){
-				$name = $_POST['cuisine'];
-				$sql="SELECT * FROM restaurant WHERE cuisine LIKE '%". $name. "%'";
-				$result = mysqli_query($con, $sql) or die(mysqli_error($con));
-				
-				displayOutput($result);
-			}
-			else{
-				?>
-				<script type="text/javascript">
-					alert("Please choose one of the filter options");
-				</script>
-				<?php
-			}
-		}
-		?>
-
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.js"></script>  
   <script>

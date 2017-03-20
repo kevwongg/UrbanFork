@@ -23,7 +23,7 @@ include("header.php");?>
     <div class="container">
       <h1 class="jumbotron-heading">UrbanFork</h1>
       <p class="lead text-muted">The place to search for good food!</p>
-      <?php if (isset($_SESSION['username'])): ?>
+      <?php if (isset($_SESSION['username']) || isset($_SESSION['admin_userid'])): ?>
         <a href="search.php" class="btn btn-success">Search Restaurants</a>
       <?php else: ?>
         <p>
