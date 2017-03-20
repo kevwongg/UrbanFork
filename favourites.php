@@ -2,120 +2,115 @@
 <?php include("header.php");?>
 <?php include("database.php");?>
 
+<?php
+if (!isset($_SESSION['username'])) {
+  header("location:login.php");
+}
+?>
+
 <html>
   <head> 
 
     <meta charset="utf-8">
-    <title>UrbanFork</title>
-    <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="css/pin.css" rel="stylesheet">
 
-  <style>
-  .carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
-      width: 50%;
-      margin: auto;
-      }
-      </style>
-      </head>
-      <body>
-
-      <div class="container">
-      <br>
-
-    <div id="carousel_id" class="carousel slide" data-ride="carousel" data-interval="3000">
-        <!-- Indicatiors --> 
-        <ol class="carousel-indicators">
-        <li data-target="carousel_id" data-slide-to="0" class="active"></li>
-        <li data-target="carousel_id" data-slide-to="1"></li>
-        <li data-target="carousel_id" data-slide-to="2"></li>
-    </ol>
-
-    <div class="carousel-inner">
-    <div class="item active">
-    <img src="img/salmon.jpg" alt="Salmon">
-    <div class="carousel-caption">
-    <h3>Seafood</h3>
-    </div>
-    </div>
-
-    <div class="item">
-    <img src="img/noodles.jpg" alt="Ramen">
-    <div class="carousel-caption">
-    <h3>Ramen</h3>
-    </div>
-    </div>
-
-    <div class="item">
-    <img src="img/shrimp.jpg" alt="Shr">
-    <div class="carousel-caption">
-    <h3>Stir-fry</h3>
-    </div>
-    </div>
-
-
-    <a class="left carousel-control" href="#carousel-id" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#caoursel-id" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
-</div>
-</div>
-</div>
-</body>
-
-
-
-
-   
-    <body>
-
-    <?php echo $page_title;?>
-
-
-
+  </head>
+  
+  <body>
     <div class="container">
-    <div class="jumbotron">
-        <h1>My Favourites</h1>
-        <p>All your favourited restaurants displayed here! </p>
+    <div>
+     <!-- <h1><? echo $_SESSION['name']; ?></h1> probably don't need this line?--> 
+    </div>
+
+      <div class="jumbotron">
+        <h2>Hey there <? echo $_SESSION['name'];?> !</h2> 
+        <p>All of your favourited restaurants are listed below. </p>
         <p><a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/search.php" role="button">Favourite More Restaurants</a>
         </p>
-        </div>
-        <table align="center" border="1" width="100%">
-        <tr>
-        <th>List Name</th>
-        </tr>
-    <?php
-    session_start();
-    $username = $_SESSION['username'];
-    echo $username;
-    $query = "SELECT listname FROM listoffavourites INNER JOIN maintains INNER JOIN favourites ON listoffavourites.listid = maintains.listid AND favourites.id = maintains.id AND maintains.id=$username";
+      </div>          
+                
+    </div>
 
-    $result = mysqli_query($con, $query) or die("Error");
-    while($row = mysqli_fetch_array($result)){
-        echo "<br>";
-        $listname = $row['listname'];
+<!--Fix this code here--> 
+    <div id="wrapper">
+      <div id="columns"> 
+        <div class="pin">
+        <img src= "img/italian.jpg"/>  <!-- This picture should be the picture of the first reataurant in the list--> 
+        <p> This caption should be the listname  
+        </p>
+    </div>
 
-        ?> 
-        <tr>
-        <td><p><?php echo $listname; ?></p></td>
-        <?php
+    <!-- Clicking on the image should take user to webpage of that list, should show list contents.--> 
 
-    }
+      <div class="pin"> 
+      <img src="img/chinese.jpg"/> 
+      <p> This caption should be listname2 
+      </p>
+    </div>
 
+      <div class="pin">
+      <img src="img/french.jpg"/>
+      <p> This caption should be listname3
+      </p>
+      </div>
 
-    mysqli_close($con);
+       <div class="pin">
+      <img src="img/japanese.jpg"/>
+      <p> This caption should be listname4
+      </p>
+      </div>
 
-    ?>
+       <div class="pin">
+      <img src="img/korean.jpg"/>
+      <p> This caption should be listname4
+      </p>
+      </div>
+
+    <div class="container">   
+        <?php        
+          $userId = $_SESSION['userId'];        
+          $query = "SELECT listname, m.rname FROM listoffavourites lf INNER JOIN maintains m INNER JOIN favourites f ON lf.listid = m.listid AND f.id = m.id AND m.id = $userId";
+
+          $result = mysqli_query($con, $query) or die("Error");
+          $row = mysqli_fetch_array($result);
+          $listName[] = $row['listname'];
+          $placeNames[] = $row['rname'];
+        ?>     
+        
+        
+        <?php 
+          $indexList = 0;
+          while ($indexList < sizeof($listName)) {          
+        ?>
+            <div>
+              <h3><? echo $listName[$indexList]?></h3>
+              <ul>
+                <?php         
+                  $index = 0;
+                  while($index < sizeof($placeNames)){
+                ?> 
+                    <li><?echo $placeNames[$index];?></li>
+                <?php
+                    $index++;
+                  }
+                  mysqli_close($con); 
+                ?>
+              </ul>
+            </div>
+          <?php 
+            $indexList++;
+          }
+          ?>
+
     </div>
 
 
-    </body>
+  </body>
 
-    </html>
+</html>
 
