@@ -17,7 +17,10 @@
       <li id="search"><a href="search.php">Search Restaurants</a></li>
       
       <?php
-        if (isset($_SESSION['username'])) {
+        if (isset($_SESSION['username']) || isset($_SESSION['admin_userid'])) {
+          if (isset($_SESSION['admin_userid'])) {
+            echo '<li><a href="admin_manage.php">Manage</a></li>';
+          }
           echo '<li id="Favourites"><a href="Favourites.php">Favourites</a></li>';
           echo '<li><a href="logout.php">Logout</a></li>';        
         } else {

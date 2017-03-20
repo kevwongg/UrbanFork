@@ -10,13 +10,13 @@ if(isset($_POST['submit'])){
 	if(!isset($email) || $email == '' 
 		|| !isset($password) || $password == ''){
 		$_SESSION['admin_errors'] = array("Fill in all fields!");
-		header("Location:login.php");
+		header("Location: admin_login.php");
 		exit();
 	} else {
 		$result = mysqli_query($con, "SELECT * FROM admin WHERE email = '$email' AND password = '$password'") or die($mysqli->error());
 		if($result ->num_rows == 0){
 			$_SESSION['admin_errors'] = array("Incorrect user or password");
-			header("Location:adminlogin.php");
+			header("Location:admin_login.php");
 			exit();
 		}
         $username = mysqli_query($con, "SELECT id FROM admin WHERE email = '$email' AND password = '$password'") /*or die($mysqli->error())*/;
