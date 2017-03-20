@@ -19,8 +19,8 @@
       <?php
         if (isset($_SESSION['username']) || isset($_SESSION['admin_userid'])) {
           if (isset($_SESSION['admin_userid'])) {
-            echo '<li><a href="admin_manage.php">Manage</a></li>';
-            echo '<li><a href="add_restaurant.php">Add Restaurant</a></li>';
+            echo '<li id="admin_manage"><a href="admin_manage.php">Manage</a></li>';
+            echo '<li id="add_restaurant"><a href="add_restaurant.php">Add Restaurant</a></li>';
           }
           echo '<li id="Favourites"><a href="Favourites.php">Favourites</a></li>';
           echo '<li><a href="logout.php">Logout</a></li>';        

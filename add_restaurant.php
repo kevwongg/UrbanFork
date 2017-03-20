@@ -62,7 +62,7 @@
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.js"></script>
   <script>
-    // jQuery("#login").addClass("active");
+    jQuery("#add_restaurant").addClass("active");
   </script>
 </body>
 </html>
