@@ -145,40 +145,8 @@
 				
 			}
 		}
+	?>
 		
-		
-		// Filters data according to cuisine using radio buttons
-		if(isset($_POST['applyFilters'])){
-			if (isset($_POST['cuisine'])){
-				$name = $_POST['cuisine'];
-				
-				$select_string = " rname, location";
-				if(isset($_POST['checkCuisine'])){
-					$select_string = $select_string.", cuisine";
-				}
-				if(isset($_POST['checkPhone'])){
-					$select_string = $select_string.", phone";
-				}
-				if(isset($_POST['checkDes'])){
-					$select_string = $select_string.", description";
-				}
-					
-				
-				$sql="SELECT DISTINCT" . $select_string . " FROM restaurant WHERE cuisine LIKE '%". $name. "%'";
-				$result = mysqli_query($con, $sql) or die(mysqli_error($con));
-				
-				displayOutput($result);
-			}
-			else{
-				?>
-				<script type="text/javascript">
-					alert("Please choose one of the filter options");
-				</script>
-				<?php
-			}
-		}
-		?>
-
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.js"></script>  
   <script>
