@@ -34,7 +34,7 @@ button {
 	float: left;
 	margin-top: 100px;
 	margin-left: 300px;
-	height: 250px;
+	height: 200px;
 	overflow:auto;
 }
 
@@ -42,13 +42,14 @@ button {
 	float: right;
 	margin-top: 100px;
 	margin-right: 300px;
-	height: 250px;
+	height: 200px;
 	overflow:auto;
 }
 
 
 
 body{
+	background-color: #BCC6CC;
 	align-content: center;
 }
 .search-title{
@@ -65,15 +66,24 @@ body{
 
 .Output {
 	float: left;
-    margin-top: 5px;
 	margin-bottom: 5px;
-    padding: 16px;
-	font-size: 200%;
+	font-size: 175%;
 	width: 50%;
 	text-align: center;
 }
 
-
 .sectionHead{
 	font-size: 150%;
+}
+
+.pin p{
+	font-size: 85%;
+}
+
+.pin{
+	opacity: 0.6;
+}
+
+.pin:hover{
+	opacity: 1;
 }
