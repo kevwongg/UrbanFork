@@ -32,18 +32,6 @@
 			$cuisine = $row['cuisine'];
 			$description = $row['description'];
 			$phone = $row['phone'];
-			
-			// echo "<h1 class=\"jumbotron-heading\">$rname</h1>";
-			// echo "<br>";
-			// echo $location;
-			// echo "<br>";
-			
-			// echo "<br>";
-			// echo $cuisine;
-			// echo "<br>";
-			// echo $description;
-			// echo "<br>";
-			// echo $phone;
 		}
 
 	?>
@@ -57,39 +45,7 @@
 			  <div class="text-center">Cuisine: <?php echo $cuisine?> | Location: <?php echo $location?> | Phone #: <?php echo $phone?></div>
         </div>
     </div>
-	<!--div class="container-fluid">
-		<div class="row">
-			<div class="col-md-12">
-
-				</br>
-				<dl>
-					<dt>
-						Cuisine
-					</dt>
-					<dd>
-						<?php echo $cuisine ?>
-					</dd>
-					<dt>
-						Description
-					</dt>
-					<dd>
-						<?php echo $description ?>
-					</dd>
-				</dl> 
-								
-
-				<br/>
-				<address>
-					 <strong><?php echo $rname ?></strong>
-					 <br/>
-					 <?php echo $location ?>
-					 <br />
-					 <abbr title="Phone">Phone:</abbr> <?php echo $phone ?>
-				</address>
-
-			</div>
-		</div>
-	</div-->
+	<div class="text-center" id="menu"><h2>MENU</h2></div>
 	
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.js"></script>  
