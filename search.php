@@ -11,6 +11,7 @@
   <meta name="author" content="">
   <link rel="icon" href="">
   <title>UrbanFork</title>
+  <link href="css/pin.css" rel = "stylesheet">
   <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/search.css" rel = "stylesheet">
@@ -49,26 +50,10 @@
 			
 				
 		</form>
-		
-		<!--
-		<form method="post" id = "filter" action= "search.php">
-			<div id = "filterSection">
-			<p class = "sectionHead" >Choose Cuisine</p>
-				<input type="radio" name="cuisine" value="chinese">  Chinese<br>
-				<input type="radio" name="cuisine" value="french">  French<br>
-				<input type="radio" name="cuisine" value="italian">  Italian<br>
-				<input type="radio" name="cuisine" value="korean">  Korean<br>
-				<input type="radio" name="cuisine" value="german">  German<br>
-				<input type="radio" name="cuisine" value="japanese">  Japanese<br>
-				<button class = "filterbtn" type="submit" name = "applyFilters">Apply Filter</button>
-			</div>
-		</form>
-		-->
 	</div>
 
 
 	<?php
-	// TODO: Maybe change the code so user can select what should be displayed?
 		function displayOutput($result){
 				while($row = mysqli_fetch_array($result)){
 					echo "<div class = 'Output'>";
@@ -92,26 +77,31 @@
 					?>
 					
 					
-					
-					<div class = "image">
-						<a href = <?php echo $hrefPath ?>>
-							<img src= <?php echo $imagePath ?> alt="Test" style="width:304px;height:228px;">
-						</a>
-					</div>
-					
+					<div class = "pin">
+						<div class = "image">
+							<a href = <?php echo $hrefPath ?>>
+								<img src= <?php echo $imagePath ?> alt="Test" style="width:304px;height:228px;">
+							</a>
+						</div>
 						
-					<div class = "row">
-						<div class = "col text_output"> <?php foreach($row as $value){echo $value; echo "<br>";} ?> </div>
+						<div class = "row">
+							<div class = "col text_output">
+								<p>
+									<?php foreach($row as $value){
+										echo $value;
+										echo "<br>";
+										echo "<br>";
+										} ?>
+								</p>
+							</div>
+						</div>
+					
 					</div>
 				
 					
 					<?php
 					echo "</div>";
-					
-					
-					
 				}
-			
 		}
 		
 		if(isset($_POST['submit'])){
