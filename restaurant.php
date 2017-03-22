@@ -13,6 +13,7 @@
   <title>UrbanFork</title>
   <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/restaurant.css" rel="stylesheet">
 </head>
 <body>
 	
@@ -47,12 +48,19 @@
 
 	?>
 
-	<div class="container-fluid">
+
+	<div class="container-fluid" id="box">
+        <div class="container-fluid" id="messagebox">
+            <div class="text-center" id="restaurant-name"><h1><?php echo $rname?></h1></div>
+            <div class="text-center" id="description"><?php echo $description?></div>
+                <br>
+			  <div class="text-center">Cuisine: <?php echo $cuisine?> | Location: <?php echo $location?> | Phone #: <?php echo $phone?></div>
+        </div>
+    </div>
+	<!--div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-				<h1>
-					<?php echo $rname ?>
-				</h1>
+
 				</br>
 				<dl>
 					<dt>
@@ -69,44 +77,6 @@
 					</dd>
 				</dl> 
 								
-				<div class="carousel slide" id="carousel-207906">
-					<ol class="carousel-indicators">
-						<li data-slide-to="0" data-target="#carousel-207906" class="active">
-						</li>
-						<li data-slide-to="1" data-target="#carousel-207906">
-						</li>
-					</ol>
-					<div class="carousel-inner">
-						<div class="item active">
-							<img class="img-responsive center-block" alt="Carousel Bootstrap First" src="img/chinese.jpg" />
-							<div class="carousel-caption">
-								<h4>
-									First Thumbnail label
-								</h4>
-								<p>
-									Some text 1
-								</p>
-							</div>
-						</div>
-						<div class="item">
-							<img class="img-responsive center-block" alt="Carousel Bootstrap Second" src="img/french.jpg" />
-							<div class="carousel-caption">
-								<h4>
-									Second Thumbnail label
-								</h4>
-								<p>
-									Some text 2
-								</p>
-							</div>
-						</div>
-					</div>
-					<a class="left carousel-control" href="#carousel-207906" data-slide="prev">
-					<span class="glyphicon glyphicon-chevron-left"></span>
-					</a>
-					<a class="right carousel-control" href="#carousel-207906" data-slide="next">
-					<span class="glyphicon glyphicon-chevron-right"></span>
-					</a>
-				</div>
 
 				<br/>
 				<address>
@@ -119,7 +89,7 @@
 
 			</div>
 		</div>
-	</div>
+	</div-->
 	
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.js"></script>  
