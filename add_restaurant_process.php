@@ -7,7 +7,7 @@ include 'database.php';
 if(isset($_POST['submit'])){
 
 	if (!isset($_SESSION['admin_userid'])) {
-		$_SESSION['errors'] = array("Invalid user credentials");
+		// $_SESSION['errors'] = array("Invalid user credentials");
 		header("Location:index.php");
 		exit();
 	}
@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
 		|| !isset($description) || $description == ''
 		|| !isset($address) || $address == '' || !isset($phone) || $phone == ''){
 			$_SESSION['errors'] = array("Fill in all fields!");
-			header("Location:register.php");
+			header("Location:add_restaurant.php");
 		exit();
 	}
 	else {

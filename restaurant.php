@@ -41,9 +41,15 @@
 					<li>
 						<a href="#" title="Favourite" class="btn-social btn-outline"><i class="fa fa-star"></i></a>
 					</li>
+					<?php if (isset($_SESSION['admin_userid'])) { 
+						$hrefRname = str_replace(' ', '%20', $rname);
+						$hrefLoc = str_replace(' ', '%20', $location);
+						$edit_restaurant_address = "edit_restaurant.php?rname=".$hrefRname."&location=".$hrefLoc;
+						?>
 					<li>
-						<a href="#" target="blank" title="Edit" class="btn-social btn-outline"><i class="fa fa-pencil"></i></a>
+						<a href=<?php echo $edit_restaurant_address ?> title="Edit" class="btn-social btn-outline"><i class="fa fa-pencil"></i></a>
 					</li>
+					<?php }?>
 					<li>
 						<a href="#" title="Statistics" target="blank" class="btn-social btn-outline"><i class="fa fa-bar-chart"></i></a>
 					</li>
