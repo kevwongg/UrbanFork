@@ -17,3 +17,24 @@ h1{
   width: auto;
 }
 
+.menu-type{
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+}
+
+.menu-item{
+	padding: 10px 10px 10px 1px;
+	margin: 5px 0 0 0;
+	border-width: 0.01px;
+	border-style: solid;
+
+}
+
+.item-title{
+	font-weight: bold;
+	font-size: 100%;
+}
+
+.item-description{
+	font-size: 80%;
+}
