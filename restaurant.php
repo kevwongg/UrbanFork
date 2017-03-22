@@ -45,15 +45,9 @@
 			  <div class="text-center">Cuisine: <?php echo $cuisine?> | Location: <?php echo $location?> | Phone #: <?php echo $phone?></div>
         </div>
     </div>
-	<div class="text-center" id="menu"><h2>MENU</h2></div>
-	<!--div class="row">
-	  <div class="col-sm-4">.col-sm-4</div>
-	  <div class="col-sm-4">.col-sm-4</div>
-	  <div class="col-sm-4">.col-sm-4</div>
-	</div-->
-
+	<div class="text-center" id="menu"><h2>Menu</h2></div>
 	<?php 
-		$sql="SELECT * FROM menu WHERE rname = '" . $rname . "' AND location = '" . $location . "'"; 
+		$sql="SELECT * FROM menu WHERE rname = '" . $rname . "' AND location = '" . $location . "'ORDER BY type ASC"; 
 		$result = mysqli_query($con, $sql) or die(mysqli_error($con));
 		while($row = mysqli_fetch_array($result)){
 			$type = $row['type'];
