@@ -21,6 +21,12 @@
 			// echo $rname;
 			$location = $_GET['location'];
 			// echo $location;
+			$hrefRname = str_replace(' ', '%20', $rname);
+			$hrefLoc = str_replace(' ', '%20', $location);
+					
+			$statsPath = "stats.php?rname=".$hrefRname."&location=".$hrefLoc;
+			
+			
 			$sql="SELECT * FROM restaurant WHERE rname = '" . $rname . "' AND location = '" . $location . "'";
 			$result = mysqli_query($con, $sql) or die(mysqli_error($con));
 			while($row = mysqli_fetch_array($result)){
@@ -45,7 +51,7 @@
 						<a href="#" target="blank" title="Edit" class="btn-social btn-outline"><i class="fa fa-pencil"></i></a>
 					</li>
 					<li>
-						<a href="#" title="Statistics" target="blank" class="btn-social btn-outline"><i class="fa fa-bar-chart"></i></a>
+						<a href= <?php echo $statsPath ?> title="Statistics" class="btn-social btn-outline"><i class="fa fa-bar-chart"></i></a>
 					</li>
 				</ul>
 			</div>
