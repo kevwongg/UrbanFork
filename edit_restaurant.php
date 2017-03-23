@@ -33,7 +33,7 @@
 
   ?>
 
-  <form meth  od="post" id="form" action="edit_restaurant_process.php">
+  <form method="post" id="form" action="edit_restaurant_process.php">
     <p class="text-center login-title">Edit Restaurant</p>
 
     <?php if (isset($_SESSION['errors'])): ?>
@@ -44,6 +44,15 @@
     </div>
     <?php endif;
     unset($_SESSION['errors']); ?>
+
+    <?php if (isset($_SESSION['success'])): ?>
+    <div class="form-success text-center">
+        <?php foreach($_SESSION['success'] as $error): ?>
+            <p><?php echo $error ?></p>
+        <?php endforeach; ?>
+    </div>
+    <?php endif;
+    unset($_SESSION['success']); ?>
 
     <div class="container">
       <?php echo "<label><b>Restaurant: $rname</b></label>"; ?>
