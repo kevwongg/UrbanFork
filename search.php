@@ -24,7 +24,7 @@
 		<form  method="post" action="search.php?go"  id="searchform"> 
 		<p class="text-center search-title">Search Restaurants</p>  
 			<div class="container">
-				<input id = "center-bar" class = "center-bar" type="text" placeholder="Search..." name="query" required>
+				<input id = "center-bar" class = "center-bar" type="text" placeholder="Search..." name="query">
 				<button class="btn-primary" type="submit" name="submit">
 					<span class="glyphicon glyphicon-search"></span>
 				</button>
