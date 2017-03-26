@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 10, 2017 at 09:11 AM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.28
+-- Host: localhost
+-- Generation Time: Mar 27, 2017 at 12:40 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -58,6 +58,16 @@ CREATE TABLE `browses` (
   `rname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `browses`
+--
+
+INSERT INTO `browses` (`id`, `location`, `rname`) VALUES
+(4, 'Vancouver', 'Anton\'s Pasta'),
+(4, 'Vancouver', 'italiano'),
+(4, 'Vancouver', 'Italiano2'),
+(4, 'Vancouver', 'Pizza Locale');
+
 -- --------------------------------------------------------
 
 --
@@ -70,6 +80,27 @@ CREATE TABLE `contains` (
   `rname` varchar(50) NOT NULL,
   `type` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `contains`
+--
+
+INSERT INTO `contains` (`dishid`, `location`, `rname`, `type`) VALUES
+(11111, 'Vancouver', 'Pizza Locale', 'Breakfast'),
+(11111, 'Vancouver', 'Pizza Locale', 'Dinner'),
+(11111, 'Vancouver', 'Pizza Locale', 'Lunch'),
+(22222, 'Vancouver', 'Pizza Locale', 'Breakfast'),
+(22222, 'Vancouver', 'Pizza Locale', 'Dinner'),
+(22222, 'Vancouver', 'Pizza Locale', 'Lunch'),
+(33333, 'Vancouver', 'Pizza Locale', 'Breakfast'),
+(33333, 'Vancouver', 'Pizza Locale', 'Dinner'),
+(33333, 'Vancouver', 'Pizza Locale', 'Lunch'),
+(44444, 'Vancouver', 'Pizza Locale', 'Breakfast'),
+(44444, 'Vancouver', 'Pizza Locale', 'Dinner'),
+(44444, 'Vancouver', 'Pizza Locale', 'Lunch'),
+(55555, 'Vancouver', 'Pizza Locale', 'Breakfast'),
+(55555, 'Vancouver', 'Pizza Locale', 'Dinner'),
+(55555, 'Vancouver', 'Pizza Locale', 'Lunch');
 
 -- --------------------------------------------------------
 
@@ -177,6 +208,15 @@ CREATE TABLE `menu` (
   `rname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `menu`
+--
+
+INSERT INTO `menu` (`type`, `location`, `rname`) VALUES
+('Breakfast', 'Vancouver', 'Pizza Locale'),
+('Dinner', 'Vancouver', 'Pizza Locale'),
+('Lunch', 'Vancouver', 'Pizza Locale');
+
 -- --------------------------------------------------------
 
 --
@@ -200,6 +240,16 @@ CREATE TABLE `restaurant` (
   `phone` varchar(20) NOT NULL,
   `rname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `restaurant`
+--
+
+INSERT INTO `restaurant` (`location`, `cuisine`, `description`, `phone`, `rname`) VALUES
+('Vancouver', 'Italian', 'best past', '6049001900', 'Anton\'s Pasta'),
+('Vancouver', 'Italian', 'Pizza', '6044325053', 'italiano'),
+('Vancouver', 'Italian', 'Testin', '6054320432', 'Italiano2'),
+('Vancouver', 'Italian', 'Best Pizza', '6048998999', 'Pizza Locale');
 
 -- --------------------------------------------------------
 
@@ -368,7 +418,7 @@ ALTER TABLE `admin_manages_restaurant`
 -- Constraints for table `browses`
 --
 ALTER TABLE `browses`
-  ADD CONSTRAINT `browses_ibfk_1` FOREIGN KEY (`id`) REFERENCES `publicuser` (`id`),
+  ADD CONSTRAINT `browses_ibfk_1` FOREIGN KEY (`id`) REFERENCES `loggedinuser` (`id`),
   ADD CONSTRAINT `browses_ibfk_2` FOREIGN KEY (`location`,`rname`) REFERENCES `restaurant` (`location`, `rname`);
 
 --
