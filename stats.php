@@ -52,31 +52,38 @@
 		
 		<div class = "container-fluid">
 			<div class = "row">
-				<div class = "col-md-3">
+				<div class = "col-md-2 col-md-offset-1">
 					<form  method="post" action=""  id="maxBtn">
 						<button class = "btn-aggr" type = "submit" name = "maxDish">
-							Most expensive dish on menu
+							Most expensive dish
 						</button>	
 					</form>
 				</div>
-				<div class = "col-md-3">
+				<div class = "col-md-2">
 					<form  method="post" action=""  id="minBtn">
 						<button class = "btn-aggr" type = "submit" name = "minDish">
-							Cheapest dish on menu
+							Cheapest dish
 						</button>	
 					</form>
 				</div>
-				<div class = "col-md-3">
+				<div class = "col-md-2">
 					<form  method="post" action=""  id="numBtn">
 						<button class = "btn-aggr" type = "submit" name = "numDish">
-							Number of dishes on menu
+							Number of dishes
 						</button>	
 					</form>
 				</div>
-				<div class ="col-md-3">
+				<div class ="col-md-2">
 					<form  method="post" action=""  id="avgBtn">
 						<button class = "btn-aggr" type = "submit" name = "avgPrice">
-							Average price of dishes on menu
+							Average price of dishes
+						</button>
+					</form>
+				</div>
+				<div class ="col-md-2">
+					<form  method="post" action=""  id="sumBtn">
+						<button class = "btn-aggr" type = "submit" name = "sumPrice">
+							Sum price of all dishes
 						</button>
 					</form>
 				</div>
@@ -133,6 +140,13 @@
 				displayOutput($result);
 			}
 		
+			if(isset($_POST['sumPrice'])){
+				$sql="SELECT SUM(d.price)
+					  FROM contains c, dishes d
+					  WHERE c.dishid = d.dishid AND c.location = '".$location."' AND c.rname = '".$rname."'";
+				$result = mysqli_query($con, $sql) or die(mysqli_error($con));
+				displayOutput($result);
+			}
 		?>
 		
 		<script src="js/jquery.min.js"></script>
