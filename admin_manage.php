@@ -64,7 +64,7 @@ include("header.php");?>
         $result = mysqli_query($con, $sql) or die(mysqli_error($con));
         echo "<div class = 'row'>";
           while($menu_row = mysqli_fetch_array($result)){
-            echo "<div class = 'col-sm-6 text-center menu-item'>";
+            echo "<div class = 'col-sm-6 text-center people'>";
               echo "<div class = 'text-center name'>";
                   echo $menu_row['name'];
               echo "</div>";
@@ -83,10 +83,11 @@ include("header.php");?>
                   echo $menu_row['username'];
                 echo "</div>";
               }
-            echo "</div>";
-          }
+          echo "</div>";
+        }
         echo "</div>";
         echo "<br>";
+
     }
   ?>
 
