@@ -20,7 +20,9 @@
 		<?php
 			$rname = $_GET['rname'];
 			// echo $rname;
+			$_SESSION["rname"] = $rname;
 			$location = $_GET['location'];
+			$_SESSION['location'] = $location;
 			// echo $location;
 			$hrefRname = str_replace(' ', '%20', $rname);
 			$hrefLoc = str_replace(' ', '%20', $location);
@@ -73,12 +75,33 @@
 		</div>
 		<div class="text-center" id="menu"><h2>Menu</h2></div>
 
+		<?php
+			$hrefRname = str_replace(' ', '%20', $rname);
+			$hrefLoc = str_replace(' ', '%20', $location);
+			$restaurant_address = "restaurant.php?rname=".$hrefRname."&location=".$hrefLoc;
+		?>
+		<div align="center">
+			<form  method="post" action=<?php echo $restaurant_address ?>  id="searchform">
+				<fieldset data-role="controlgroup" data-type="horizontal">
+					<p>Select the attributes returned for the menu</p>
+					<label for="price">Price</label>
+					<input type="checkbox" name="price" id="price" value="price">
+					<label for="description">Description</label>
+					<input type="checkbox" name="description" id="description" value="description">
+				</fieldset>
+				<br>
+				<input class="btn btn-primary" type="submit" data-inline="true" value="Show menu" name="submit">
+			</form>
+		</div>
+
+		
 		<?php if (isset($_SESSION['admin_userid'])) { 
 			$hrefRname = str_replace(' ', '%20', $rname);
 			$hrefLoc = str_replace(' ', '%20', $location);
 			$edit_restaurant_menu_address = "edit_restaurant_menu.php?rname=".$hrefRname."&location=".$hrefLoc;
 		?>
 
+		<br>
 		<div class="text-center">
 			<a class="text-center" href=<?php echo $edit_restaurant_menu_address ?>>Edit Menu</a>
 			<br><br>
@@ -87,7 +110,8 @@
 		<?php }?>
 
 		<?php
-			$sql="SELECT * FROM menu WHERE rname = '" . $rname . "' AND location = '" . $location . "'ORDER BY type DESC";
+		if(isset($_POST['submit'])){   
+			$sql="SELECT * FROM menu WHERE rname = '" . $_SESSION['rname'] . "' AND location = '" . $_SESSION['location'] . "'ORDER BY type DESC";
 			$result = mysqli_query($con, $sql) or die(mysqli_error($con));
 			while($row = mysqli_fetch_array($result)){
 				$type = $row['type'];
@@ -101,17 +125,22 @@
 					while($menu_row = mysqli_fetch_array($menu_result)){
 						echo "<div class = 'col-sm-6 text-center menu-item'>";
 							echo "<div class = 'text-center item-title'>";
-								echo $menu_row['dname'] . '... ';
-								echo $menu_row['price'];
+								echo $menu_row['dname'] ;
+								if(isset($_POST['price'])){
+									echo '... ' . $menu_row['price'];
+								}
 							echo "</div>";
-							echo "<div class = 'text-center item-description'>";
-								echo $menu_row['description'];
-							echo "</div>";
+							if(isset($_POST['description'])){
+								echo "<div class = 'text-center item-description'>";
+									echo $menu_row['description'];
+								echo "</div>";
+							}
 						echo "</div>";
 					}
 				echo "</div>";
 				echo "<br>";
 			}
+		}
 		?>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.js"></script>
