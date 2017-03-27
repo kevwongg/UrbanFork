@@ -43,8 +43,7 @@
 				$sql = "INSERT INTO browses(id, location, rname)
 						VALUES(".$_SESSION['userId'].", '".$location."' , '".$rname."')
 						ON DUPLICATE KEY UPDATE location = '".$location."'";
-				echo $sql;
-				//$result = mysqli_query($con, $sql) or die(mysqli_error($con));
+				$result = mysqli_query($con, $sql) or die(mysqli_error($con));
 			}
 		?>
 		<div class="container-fluid" id="box">
