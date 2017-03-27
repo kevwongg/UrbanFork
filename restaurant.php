@@ -63,6 +63,20 @@
 			</div>
 		</div>
 		<div class="text-center" id="menu"><h2>Menu</h2></div>
+
+		<?php if (isset($_SESSION['admin_userid'])) { 
+			$hrefRname = str_replace(' ', '%20', $rname);
+			$hrefLoc = str_replace(' ', '%20', $location);
+			$edit_restaurant_menu_address = "edit_restaurant_menu.php?rname=".$hrefRname."&location=".$hrefLoc;
+		?>
+
+		<div class="text-center">
+			<a class="text-center" href=<?php echo $edit_restaurant_menu_address ?>>Edit Menu</a>
+			<br><br>
+		</div>
+
+		<?php }?>
+
 		<?php
 			$sql="SELECT * FROM menu WHERE rname = '" . $rname . "' AND location = '" . $location . "'ORDER BY type DESC";
 			$result = mysqli_query($con, $sql) or die(mysqli_error($con));
