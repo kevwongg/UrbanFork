@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 27, 2017 at 12:40 AM
+-- Generation Time: Mar 27, 2017 at 09:56 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -34,6 +34,13 @@ CREATE TABLE `admin` (
   `country` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `name`, `email`, `password`, `country`) VALUES
+(1, 'test', 'test@test.com', 'password', 'Canada');
+
 -- --------------------------------------------------------
 
 --
@@ -63,10 +70,12 @@ CREATE TABLE `browses` (
 --
 
 INSERT INTO `browses` (`id`, `location`, `rname`) VALUES
-(4, 'Vancouver', 'Anton\'s Pasta'),
 (4, 'Vancouver', 'italiano'),
 (4, 'Vancouver', 'Italiano2'),
-(4, 'Vancouver', 'Pizza Locale');
+(4, 'Vancouver', 'Pizza Locale'),
+(5, 'Vancouver', 'italiano'),
+(5, 'Vancouver', 'Italiano2'),
+(5, 'Vancouver', 'Pizza Locale');
 
 -- --------------------------------------------------------
 
@@ -89,12 +98,16 @@ INSERT INTO `contains` (`dishid`, `location`, `rname`, `type`) VALUES
 (11111, 'Vancouver', 'Pizza Locale', 'Breakfast'),
 (11111, 'Vancouver', 'Pizza Locale', 'Dinner'),
 (11111, 'Vancouver', 'Pizza Locale', 'Lunch'),
+(12612, '1st Avenue', 'New Spaghetti Factory', 'Menu1'),
+(12612, 'Vancouver', 'Pizza Locale', 'Dinner'),
 (22222, 'Vancouver', 'Pizza Locale', 'Breakfast'),
 (22222, 'Vancouver', 'Pizza Locale', 'Dinner'),
 (22222, 'Vancouver', 'Pizza Locale', 'Lunch'),
+(22873, '1st Avenue', 'New Spaghetti Factory', 'Menu1'),
 (33333, 'Vancouver', 'Pizza Locale', 'Breakfast'),
 (33333, 'Vancouver', 'Pizza Locale', 'Dinner'),
 (33333, 'Vancouver', 'Pizza Locale', 'Lunch'),
+(34623, '1st Avenue', 'New Spaghetti Factory', 'Menu1'),
 (44444, 'Vancouver', 'Pizza Locale', 'Breakfast'),
 (44444, 'Vancouver', 'Pizza Locale', 'Dinner'),
 (44444, 'Vancouver', 'Pizza Locale', 'Lunch'),
@@ -121,10 +134,14 @@ CREATE TABLE `dishes` (
 
 INSERT INTO `dishes` (`dishid`, `dname`, `description`, `price`) VALUES
 (11111, 'Spaghetti', 'Spaghetti with tomato sauce and meatballs', 13.99),
+(12612, 'Hamburger', 'It\'s really good', 7.99),
 (22222, 'Pancake', 'Two pancakes with syrup of your choice', 6.99),
+(22873, 'Miso Ramen', 'Miso ramen', 9.99),
 (33333, 'Steak', 'Beef steak cooked to your choice', 21.99),
+(34623, 'Chicken Sandwich', 'It\'s good', 4.99),
 (44444, 'BBQ Chicken Pizza', 'Pizza with BBQ Chicken and sauce', 11.99),
-(55555, 'Mushroom Soup', 'Creamy soup with mushrooms', 5.99);
+(55555, 'Mushroom Soup', 'Creamy soup with mushrooms', 5.99),
+(98712, 'Kimbap', '8 rolls', 3.99);
 
 -- --------------------------------------------------------
 
@@ -215,7 +232,10 @@ CREATE TABLE `menu` (
 INSERT INTO `menu` (`type`, `location`, `rname`) VALUES
 ('Breakfast', 'Vancouver', 'Pizza Locale'),
 ('Dinner', 'Vancouver', 'Pizza Locale'),
-('Lunch', 'Vancouver', 'Pizza Locale');
+('Lunch', 'Vancouver', 'Pizza Locale'),
+('Menu1', '1st Avenue', 'New Spaghetti Factory'),
+('Pizza', 'Vancouver', 'Pizza Locale'),
+('Special Guest', 'Vancouver', 'Pizza Locale');
 
 -- --------------------------------------------------------
 
@@ -246,7 +266,15 @@ CREATE TABLE `restaurant` (
 --
 
 INSERT INTO `restaurant` (`location`, `cuisine`, `description`, `phone`, `rname`) VALUES
-('Vancouver', 'Italian', 'best past', '6049001900', 'Anton\'s Pasta'),
+('1st Avenue', 'Italian', 'Lots of great pasta and other Italian Food', '(111) 111-1111', 'New Spaghetti Factory'),
+('2nd Avenue', 'French', 'The best French food in town', '(222) 222-2222', 'Escargot'),
+('3rd Avenue', 'Chinese', 'A taste of China at an affordable price', '(333) 333-3333', 'South Garden'),
+('4th Avenue', 'Korean', 'The famous Korean BBQ is proudly served here', '(444) 444-4444', 'K-town BBQ'),
+('5th Avenue', 'Japanese', 'Authentic Japanese food with fresh ingredients', '(555) 555-5555', 'Sushi land'),
+('6th Avenue', 'Korean', 'When you want to eat like a Kpopstar', '(666) 666-6666', 'Kimbap World'),
+('7th Avenue', 'German', 'Traditional German food served with beer', '(777) 777-7777', 'The Old Haus'),
+('8th Avenue', 'Italian', 'Rated 5/5 on Yalp! Come and see our famous dishes', '(888) 888-8888', 'La Trattoria'),
+('9th Avenue', 'Korean', 'Great Korean food', '(999) 999-9999', 'Seoul House'),
 ('Vancouver', 'Italian', 'Pizza', '6044325053', 'italiano'),
 ('Vancouver', 'Italian', 'Testin', '6054320432', 'Italiano2'),
 ('Vancouver', 'Italian', 'Best Pizza', '6048998999', 'Pizza Locale');
@@ -387,7 +415,7 @@ ALTER TABLE `vuser_edits_dishes`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `favourites`
 --
