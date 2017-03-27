@@ -78,8 +78,10 @@
       $result = mysqli_query($con, $sql) or die(mysqli_error($con));
       while($row = mysqli_fetch_array($result)){
 
-        $type = $row['type'];
-        $edit_menu_address = "edit_menu.php?rname=".$hrefRname."&location=".$hrefLoc."&type=".$type;
+        $type = $row['type'];        
+        $hrefType = str_replace(' ', '%20', $type);
+        
+        $edit_menu_address = "edit_menu.php?rname=".$hrefRname."&location=".$hrefLoc."&type=".$hrefType;
 
         echo "<a class=\"text-center\" href=$edit_menu_address>$type</a>";
         echo "<br>";        
