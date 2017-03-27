@@ -16,6 +16,7 @@
 	</head>
 	<body>
 		
+		
 		<?php
 			$rname = $_GET['rname'];
 			// echo $rname;
@@ -35,6 +36,15 @@
 				$cuisine = $row['cuisine'];
 				$description = $row['description'];
 				$phone = $row['phone'];
+			}
+			
+			
+			if(isset($_SESSION['username'])){
+				$sql = "INSERT INTO browses(id, location, rname)
+						VALUES(".$_SESSION['userId'].", '".$location."' , '".$rname."')
+						ON DUPLICATE KEY UPDATE location = '".$location."'";
+				echo $sql;
+				//$result = mysqli_query($con, $sql) or die(mysqli_error($con));
 			}
 		?>
 		<div class="container-fluid" id="box">
