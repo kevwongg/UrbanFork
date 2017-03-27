@@ -1,0 +1,11 @@
+#query{
+	font-size: 150%;
+	font-weight: bold;
+}
+
+.people{
+	padding: 10px 10px 10px 1px;
+	margin: 5px 0 0 0;
+	border-width: 0.01px;
+	border-style: solid;
+}
