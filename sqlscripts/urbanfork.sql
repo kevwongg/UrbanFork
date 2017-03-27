@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 27, 2017 at 09:56 PM
+-- Generation Time: Mar 27, 2017 at 10:08 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -70,11 +70,16 @@ CREATE TABLE `browses` (
 --
 
 INSERT INTO `browses` (`id`, `location`, `rname`) VALUES
-(4, 'Vancouver', 'italiano'),
-(4, 'Vancouver', 'Italiano2'),
+(4, '1st Avenue', 'New Spaghetti Factory'),
+(4, '2nd Avenue', 'Escargot'),
+(4, '3rd Avenue', 'South Garden'),
+(4, '4th Avenue', 'K-town BBQ'),
+(4, '5th Avenue', 'Sushi land'),
+(4, '6th Avenue', 'Kimbap World'),
+(4, '7th Avenue', 'The Old Haus'),
+(4, '8th Avenue', 'La Trattoria'),
+(4, '9th Avenue', 'Seoul House'),
 (4, 'Vancouver', 'Pizza Locale'),
-(5, 'Vancouver', 'italiano'),
-(5, 'Vancouver', 'Italiano2'),
 (5, 'Vancouver', 'Pizza Locale');
 
 -- --------------------------------------------------------
@@ -275,8 +280,6 @@ INSERT INTO `restaurant` (`location`, `cuisine`, `description`, `phone`, `rname`
 ('7th Avenue', 'German', 'Traditional German food served with beer', '(777) 777-7777', 'The Old Haus'),
 ('8th Avenue', 'Italian', 'Rated 5/5 on Yalp! Come and see our famous dishes', '(888) 888-8888', 'La Trattoria'),
 ('9th Avenue', 'Korean', 'Great Korean food', '(999) 999-9999', 'Seoul House'),
-('Vancouver', 'Italian', 'Pizza', '6044325053', 'italiano'),
-('Vancouver', 'Italian', 'Testin', '6054320432', 'Italiano2'),
 ('Vancouver', 'Italian', 'Best Pizza', '6048998999', 'Pizza Locale');
 
 -- --------------------------------------------------------
