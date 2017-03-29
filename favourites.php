@@ -86,7 +86,7 @@
 	    					
 	    					
 	    						<img src= <?php echo $imagePath ?> alt="Test"/>  <!-- This picture should be the picture of the first reataurant in the list--> 
-	    						<h4><? echo $listName?></h4>
+	    						<h4><?php echo $listName?></h4>
 	    					</div></a>
 	    					</div>
 	    					<div>
