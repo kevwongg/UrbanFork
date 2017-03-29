@@ -83,11 +83,13 @@
 					$hrefLoc = str_replace(' ', '%20', $location);
 					
 					$hrefPath = "http://localhost/Urbanfork/restaurant.php?rname=".$hrefRname."&location=".$hrefLoc;
+
 					
 					$imagePath = "./img/searchImage/".$fileName.".jpg";
 					echo "<br>";
 					?>
 					
+
 					
 					<div class = "pin">
 						<div class = "image">

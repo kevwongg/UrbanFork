@@ -1,11 +1,17 @@
 	<!DOCTYPE html>
 	<?php include("header.php");?>
 	<?php include("database.php");?>
+	<?php include 'ChromePhp.php';?>
+
+	<?php ChromePhp::log('Hello console!');?>
 
 	<?php
 	if (!isset($_SESSION['username'])) {
 		header("location:login.php");
 	}
+
+	$userId = $_SESSION['userId'];
+
 
 
 	?>
@@ -27,8 +33,12 @@
 
 			<div class="jumbotron">
 				<h2>Hey there <? echo $_SESSION['name'];?>!</h2> 
-				<p>All of your favourited restaurants are listed below. </p>
+				<p>All of your favourites lists are below. Please note that if your list is empty, it will not show up here. Please add a restaurant to that list first! </p>
 				<p><a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/search.php" role="button">Find More Favourites</a>
+				<a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/add_list.php" role="button">Add Favourites List</a>
+				<!-- <a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/delete_list.php?listId=<?=$listid?>&listName=<?=$listName?>" role="button">Delete Favourites List</a> -->
+				<a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/favourites_empty.php" role="button">See Empty Lists</a>
+
 				</p>
 			</div>          
 
@@ -39,7 +49,12 @@
 	    	<div id ="columns">
 	    			<?php        
 	    			$userId = $_SESSION['userId'];        
-	    			$query = "SELECT DISTINCT lf.listid,  lf.listname FROM listoffavourites lf INNER JOIN maintains m ON lf.listid = m.listid AND m.id = $userId";
+	    			// $query = "SELECT DISTINCT lf.listid,  lf.listname, m.rname, m.location FROM listoffavourites lf INNER JOIN maintains m ON lf.listid = m.listid AND m.id = $userId GROUP BY lf.listid";
+
+	    			$query = "SELECT DISTINCT lf.listid,  lf.listname, m.rname, m.location FROM listoffavourites lf INNER JOIN maintains m ON lf.listid = m.listid AND lf.id = $userId GROUP BY lf.listid";
+	    			
+
+	    			
 
 
 	    			$result = mysqli_query($con, $query) or die("Error");
@@ -47,34 +62,68 @@
 	    			while($row = mysqli_fetch_array($result)) {
 	    				$listName = $row['listname'];
 	    				$listid = $row['listid'];
+	    				$rname = $row['rname'];
+	    				$location = $row['location'];
+
+	    				
+
+
+							$fileName = str_replace(' ', '', $location.$rname);
+
+	    				$imagePath = "./img/searchImage/".$fileName.".jpg";
+	    				//chromephp::log($listName);
+	    				
 	    				?>     
 
+
+	    				<a class="btn btn-primary btn-sm" href="http://localhost/urbanfork/delete_list.php?listId=<?=$listid?>&listName=<?=$listName?>" role="button">Delete</a>
 	    				<div>
 	    					<a href="favourites_list.php?listId=<?=$listid?>&listName=<?=$listName?>"> <div class="pin">
-	    						<img src= "img/italian.jpg"/>  <!-- This picture should be the picture of the first reataurant in the list--> 
+	    					
+	    					
+	    						<img src= <?php echo $imagePath ?> alt="Test"/>  <!-- This picture should be the picture of the first reataurant in the list--> 
 	    						<h4><? echo $listName?></h4>
 	    					</div></a>
 	    					</div>
 	    					<div>
 	    				<?php
 	    					}
+	    					//var_dump($listName, $listid)
 	    				?>
+
+	    				<!-- <?php 
+	    				$query2 = "SELECT DISTINCT lf.listid,  lf.listname FROM listoffavourites lf WHERE lf.id = $userId GROUP BY lf.listid";
+	    				$result2 = mysqli_query($con, $query2) or die("Error");
+
+	    				while($row = mysqli_fetch_array($result2)){
+	    					$listName = $row['listname'];
+	    					$listid = $row['listid'];
+
+	    					?> 
+
+	    					<div> 
+	    					<a href="favourites_list.php?listId=<?=$listid?>&listName=<?=$listName?>"> <div class="pin">
+	    						<img scr="Test"/>
+	    						<h4><? echo $listName?></h4>
+	    						</div></a>
+	    						</div>
+	    						<div>
+	    						<?php 
+	    				}
+	    				?> -->
 	    		</div>
 	    		</div>
 	    		</div>	    		
-
-	    		<!--<?php 
-	    		// JUST A NOTE, please delete later
-	    			function deleteList($listId){
-	    				$query = "DELETE FROM listoffavourites WHERE listid = $listId";
-
-	    			}
-	    		?>-->
 
 	    		<?php
 	    		mysqli_close($con); 
 	    		?>
 </div>
+<!-- 	    			<form action= function deleteList($listId){
+	    				<?php $query //= "DELETE FROM listoffavourites WHERE listid = $listid" ?>}>
+	    				<button type="delete", value="deleteList">Delete</button>
+	    				</form> -->
+
 	    </body>
 
 	    </html>
