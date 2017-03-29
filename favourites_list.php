@@ -40,7 +40,6 @@ error_reporting(0);
 <p><a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/search.php" role="button">Favourite more restaurants</a> 
 <a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/rename_list.php?listId=<?=$listId?>" role="button">Edit List Name</a>
 
-<a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/delete_restaurant.php?listId=<?=$listId?>&rname=<?=$rname?>&listName=<?=$listName?>&userId=<?=$userId?>" role="button">Delete Restaurant</a>
 
 <!-- <div class ="row">
 <div class="col-lg-12">
