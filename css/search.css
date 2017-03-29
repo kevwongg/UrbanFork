@@ -87,6 +87,8 @@ body{
 
 
 .btn-nested-aggr{
+	width: 200px;
+	height: 60px;
 }
 
 .nested-aggr-output{
