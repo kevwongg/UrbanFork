@@ -199,7 +199,7 @@
 
 					<div class="row">
 						<div class="col-sm-12">
-							<a href=<?php echo $statsPath ?>  title="Statistics" target="blank" class="btn-social btn-outline"><i class="fa fa-bar-chart"></i></a>
+							<a href=<?php echo $statsPath ?>  title="Statistics" class="btn-social btn-outline"><i class="fa fa-bar-chart"></i></a>
 						</div>
 					</div>
 
