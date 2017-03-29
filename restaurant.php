@@ -82,7 +82,7 @@
         
 	        $.ajax({
 	            type: "GET",
-	            url: 'restaurant.php?rname=<? echo $rname?>&location=<? echo $location?>&checkBoxValue=' + checkBoxValue,
+	            url: 'restaurant.php?rname=<?php echo $rname?>&location=<?php echo $location?>&checkBoxValue=' + checkBoxValue,
 	            dataType: "text",
 	            data: {id: chId},
 	            statusCode: {
@@ -139,6 +139,7 @@
 						ON DUPLICATE KEY UPDATE location = '".$location."'";
 				$result = mysqli_query($con, $sql) or die(mysqli_error($con));
 			}
+			
 
 		?>
 		<div class="container-fluid" id="box">
@@ -280,15 +281,16 @@
 
 
 <?php        
-
+	
     if(isset($_GET["id"])){
         $var = $_GET["id"];
-			
-        saveFavourite($var);
+
+		saveFavourite("9628332");
     }
 
     function saveFavourite($listId){
-			include("database.php");    		    					
+		echo $listId;
+			//include("database.php");    		    					
 
     		$rname = $_GET['rname'];
 			$location = $_GET['location'];

@@ -41,7 +41,7 @@ error_reporting(0);
 <p><a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/search.php" role="button">Favourite more restaurants</a> 
 <a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/rename_list.php?listId=<?=$listId?>" role="button">Edit List Name</a>
 
-<a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/delete_restaurant.php?listId=<?=$listId?>&listName=<?=$listName?>&userId=<?=$userId?>" role="button">Delete Restaurant</a>
+<a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/delete_restaurant.php?listId=<?php echo $listId?>&listName=<?php echo $listName?>&userId=<?php echo $userId?>" role="button">Delete Restaurant</a>
 
 <!-- <div class ="row">
 <div class="col-lg-12">
@@ -101,7 +101,7 @@ error_reporting(0);
 		
 		<a href = <?php echo $hrefPath ?>>
 		<img src= <?php echo $imagePath ?> alt="Test">
-		<h4><? echo $rname[$index]?></h4>
+		<h4><?php echo $rname[$index]?></h4>
 		</a></div>
 <!-- 		<span class="form-control glyphicon glyphicon-trash siteUserrow-remover1"></span>
             

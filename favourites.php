@@ -95,26 +95,6 @@
 	    					//var_dump($listName, $listid)
 	    				?>
 
-	    				<!-- <?php 
-	    				$query2 = "SELECT DISTINCT lf.listid,  lf.listname FROM listoffavourites lf WHERE lf.id = $userId GROUP BY lf.listid";
-	    				$result2 = mysqli_query($con, $query2) or die("Error");
-
-	    				while($row = mysqli_fetch_array($result2)){
-	    					$listName = $row['listname'];
-	    					$listid = $row['listid'];
-
-	    					?> 
-
-	    					<div> 
-	    					<a href="favourites_list.php?listId=<?=$listid?>&listName=<?=$listName?>"> <div class="pin">
-	    						<img scr="Test"/>
-	    						<h4><? echo $listName?></h4>
-	    						</div></a>
-	    						</div>
-	    						<div>
-	    						<?php 
-	    				}
-	    				?> -->
 	    		</div>
 	    		</div>
 	    		</div>	    		
@@ -123,10 +103,6 @@
 	    		mysqli_close($con); 
 	    		?>
 </div>
-<!-- 	    			<form action= function deleteList($listId){
-	    				<?php $query //= "DELETE FROM listoffavourites WHERE listid = $listid" ?>}>
-	    				<button type="delete", value="deleteList">Delete</button>
-	    				</form> -->
 
 	    </body>
 
