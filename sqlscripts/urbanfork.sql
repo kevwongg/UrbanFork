@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 27, 2017 at 10:08 PM
+-- Generation Time: Mar 29, 2017 at 10:50 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -167,6 +167,7 @@ CREATE TABLE `favourites` (
 --
 
 CREATE TABLE `listoffavourites` (
+  `id` int(11) NOT NULL,
   `listid` int(11) NOT NULL,
   `listname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -175,12 +176,13 @@ CREATE TABLE `listoffavourites` (
 -- Dumping data for table `listoffavourites`
 --
 
-INSERT INTO `listoffavourites` (`listid`, `listname`) VALUES
-(21291, 'List1'),
-(2358921, 'My favourite sushi places'),
-(3452346, 'Best Chinese Restaurants'),
-(6762321, 'Breakfast Restaurants'),
-(9628330, 'Pizza is the best');
+INSERT INTO `listoffavourites` (`id`, `listid`, `listname`) VALUES
+(0, 21291, 'List1'),
+(0, 2358921, 'My favourite sushi places'),
+(0, 3452346, 'Best Chinese Restaurants'),
+(0, 6762321, 'Breakfast Restaurants'),
+(0, 9628330, 'Pizza is the best'),
+(4, 9628332, 'test');
 
 -- --------------------------------------------------------
 
@@ -217,6 +219,13 @@ CREATE TABLE `maintains` (
   `location` varchar(50) NOT NULL,
   `rname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `maintains`
+--
+
+INSERT INTO `maintains` (`listid`, `id`, `location`, `rname`) VALUES
+(9628332, 4, 'Vancouver', 'Pizza Locale');
 
 -- --------------------------------------------------------
 
@@ -358,7 +367,8 @@ ALTER TABLE `favourites`
 -- Indexes for table `listoffavourites`
 --
 ALTER TABLE `listoffavourites`
-  ADD PRIMARY KEY (`listid`);
+  ADD PRIMARY KEY (`listid`,`id`),
+  ADD KEY `id` (`id`);
 
 --
 -- Indexes for table `loggedinuser`
@@ -372,7 +382,8 @@ ALTER TABLE `loggedinuser`
 --
 ALTER TABLE `maintains`
   ADD PRIMARY KEY (`listid`,`id`,`location`,`rname`),
-  ADD KEY `id` (`id`,`location`,`rname`);
+  ADD KEY `id` (`id`,`location`,`rname`),
+  ADD KEY `maintains_ibfk_2` (`location`,`rname`);
 
 --
 -- Indexes for table `menu`
@@ -425,6 +436,11 @@ ALTER TABLE `admin`
 ALTER TABLE `favourites`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `listoffavourites`
+--
+ALTER TABLE `listoffavourites`
+  MODIFY `listid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9628333;
+--
 -- AUTO_INCREMENT for table `loggedinuser`
 --
 ALTER TABLE `loggedinuser`
@@ -466,11 +482,18 @@ ALTER TABLE `favourites`
   ADD CONSTRAINT `favourites_ibfk_1` FOREIGN KEY (`location`,`rname`) REFERENCES `restaurant` (`location`, `rname`);
 
 --
+-- Constraints for table `listoffavourites`
+--
+ALTER TABLE `listoffavourites`
+  ADD CONSTRAINT `listoffavourites_ibfk_1` FOREIGN KEY (`id`) REFERENCES `loggedinuser` (`id`);
+
+--
 -- Constraints for table `maintains`
 --
 ALTER TABLE `maintains`
-  ADD CONSTRAINT `maintains_ibfk_1` FOREIGN KEY (`listid`) REFERENCES `listoffavourites` (`listid`),
-  ADD CONSTRAINT `maintains_ibfk_2` FOREIGN KEY (`id`,`location`,`rname`) REFERENCES `favourites` (`id`, `location`, `rname`);
+  ADD CONSTRAINT `maintains_ibfk_1` FOREIGN KEY (`listid`) REFERENCES `listoffavourites` (`listid`) ON DELETE CASCADE,
+  ADD CONSTRAINT `maintains_ibfk_2` FOREIGN KEY (`location`,`rname`) REFERENCES `restaurant` (`location`, `rname`),
+  ADD CONSTRAINT `maintains_ibfk_3` FOREIGN KEY (`id`) REFERENCES `loggedinuser` (`id`);
 
 --
 -- Constraints for table `menu`

@@ -54,20 +54,12 @@
 	
 	<div class = "container">
 		<div class="row">
-			<div class = "col-md-6">
-				<form method="post" action=""  id="expensiveBtn">
-					<button class = "btn-nested-aggr" type = "submit" name = "expensiveDish">
-						Most expensive restaurant
+			<div class="col-md-2" id="reststats">
+				<a href="restStats.php">
+					<button>
+						Stats Page
 					</button>
-				</form>
-			</div>
-			
-			<div class = "col-md-6">
-				<form method="post" action=""  id="cheapBtn">
-					<button class = "btn-nested-aggr" type = "submit" name = "cheapDish">
-						Cheapest restaurant
-					</button>
-				</form>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -126,33 +118,6 @@
 				}
 		}
 		
-		function displayNestedAggr($result){
-			while($row = mysqli_fetch_array($result)){
-				$rname = $row[0];
-				$loc = $row[1];
-				$val = round($row[2],2);					
-				$hrefRname = str_replace(' ', '%20', $rname);
-				$hrefLoc = str_replace(' ', '%20', $loc);
-				$hrefPath = "http://localhost/Urbanfork/restaurant.php?rname=".$hrefRname."&location=".$hrefLoc;
-					
-				?>
-					<div class="container">
-						<div class="row">
-							<div class = "nested-aggr-output">
-								<a href = <?php echo $hrefPath ?>>
-									<?php echo $rname ?>
-								</a>
-								<br>
-								<?php echo $loc ?>
-								<br>
-								<?php echo "Average price of restaurant: ".$val ?>
-							</div>
-						</div>
-					</div>
-				
-				<?php
-			}
-		}
 		
 		if(isset($_POST['submit'])){
 			if(isset($_GET['go'])){
@@ -184,39 +149,6 @@
 				}				
 				
 			}
-		}
-		
-		
-		if(isset($_POST['expensiveDish'])){
-			$sql = "SELECT temp.rname, temp.location, temp.avgprice
-					FROM (SELECT r.rname, r.location, AVG(d.price) AS avgprice
-						  FROM restaurant r, contains c, dishes d
-						  WHERE r.location = c.location AND r.rname = c.rname AND c.dishid = d.dishid
-						  GROUP BY r.rname, r.location) as temp
-					 WHERE temp.avgprice = (SELECT MAX(t1.avgprice) FROM
-												(SELECT r.rname, r.location, AVG(d.price) AS avgprice
-												  FROM restaurant r, contains c, dishes d
-												  WHERE r.location = c.location AND r.rname = c.rname AND c.dishid = d.dishid
-												  GROUP BY r.rname, r.location) as t1)";
-										
-			$result = mysqli_query($con, $sql) or die(mysqli_error($con));
-			displayNestedAggr($result);
-		}
-		
-		if(isset($_POST['cheapDish'])){
-			$sql = "SELECT temp.rname, temp.location, temp.avgprice
-					FROM (SELECT r.rname, r.location, AVG(d.price) AS avgprice
-						  FROM restaurant r, contains c, dishes d
-						  WHERE r.location = c.location AND r.rname = c.rname AND c.dishid = d.dishid
-						  GROUP BY r.rname, r.location) as temp
-					 WHERE temp.avgprice = (SELECT MIN(t1.avgprice) FROM
-												(SELECT r.rname, r.location, AVG(d.price) AS avgprice
-												  FROM restaurant r, contains c, dishes d
-												  WHERE r.location = c.location AND r.rname = c.rname AND c.dishid = d.dishid
-												  GROUP BY r.rname, r.location) as t1)";
-										
-			$result = mysqli_query($con, $sql) or die(mysqli_error($con));
-			displayNestedAggr($result);
 		}
 	?>
 		

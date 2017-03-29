@@ -34,22 +34,24 @@
 			$location = $_GET['location'];
 			$_SESSION['location'] = $location;
 			// echo $location;
-			$userId = $_SESSION['userId'];
+			if(isset($_SESSION['userId'])){
+				$userId = $_SESSION['userId'];
+				// $sql1 = "SELECT DISTINCT lf.listid, lf.listname FROM listoffavourites lf, maintains m WHERE lf.listid = m.listid AND m.id = $userId";
+				$sql1 = "SELECT DISTINCT lf.listid, lf.listname FROM listoffavourites lf WHERE lf.id = $userId"; 
 
-			// $sql1 = "SELECT DISTINCT lf.listid, lf.listname FROM listoffavourites lf, maintains m WHERE lf.listid = m.listid AND m.id = $userId";
-			$sql1 = "SELECT DISTINCT lf.listid, lf.listname FROM listoffavourites lf WHERE lf.id = $userId"; 
-
-			$result1 = mysqli_query($con,$sql1) or die(mysqli_error($con));
+				$result1 = mysqli_query($con,$sql1) or die(mysqli_error($con));
 
 
-			//$listfav;
+				//$listfav;
 
-			
-			 while($row1 = mysqli_fetch_array($result1)){
-			 	$listfav['id'][] = $row1['listid'];
-			 	$listfav['name'][] = $row1['listname'];
+				
+				 while($row1 = mysqli_fetch_array($result1)){
+					$listfav['id'][] = $row1['listid'];
+					$listfav['name'][] = $row1['listname'];
+				}
+				print_r($listfav);	
 			}
-			print_r($listfav);	
+
 					
 
 						
@@ -116,15 +118,18 @@
 				$phone = $row['phone'];
 			}
 
-
-			// $sql = "SELECT listid from maintains m WHERE m.rname ='$rname' AND m.id = $userId";		
-			$sql = "SELECT listid from listoffavourites lf WHERE lf.id = $userId";	
-			// $sql = "SELECT m.listid from listoffavourites lf, maintains m WHERE lf.id = $userId AND m.rname = '$rname'";	
-			$result = mysqli_query($con, $sql) or die(mysqli_error($con)); 
 			
-			while($row = mysqli_fetch_array($result)){
-				$listFavId['id'][] = $row['listid'];
-			}			
+			
+			if(isset($_SESSION['userId'])){
+				// $sql = "SELECT listid from maintains m WHERE m.rname ='$rname' AND m.id = $userId";		
+				$sql = "SELECT listid from listoffavourites lf WHERE lf.id = $userId";	
+				// $sql = "SELECT m.listid from listoffavourites lf, maintains m WHERE lf.id = $userId AND m.rname = '$rname'";	
+				$result = mysqli_query($con, $sql) or die(mysqli_error($con)); 
+				
+				while($row = mysqli_fetch_array($result)){
+					$listFavId['id'][] = $row['listid'];
+				}			
+			}
 
 			
 			

@@ -87,7 +87,8 @@ body{
 
 
 .btn-nested-aggr{
-	margin-left: 200px;
+	width: 200px;
+	height: 60px;
 }
 
 .nested-aggr-output{
@@ -104,3 +105,13 @@ body{
 	height: 200px;
 	overflow:auto;
 }
+
+
+#back-btn{
+	margin-bottom: 50px;
+}
+#reststats{
+	margin-left: 500px;
+	text-align:center;
+}
+
