@@ -75,8 +75,9 @@
 	    				
 	    				?>     
 
-
+	    				<div>
 	    				<a class="btn btn-primary btn-sm" href="http://localhost/urbanfork/delete_list.php?listId=<?=$listid?>&listName=<?=$listName?>" role="button">Delete</a>
+	    				</div>
 	    				<div>
 	    					<a href="favourites_list.php?listId=<?=$listid?>&listName=<?=$listName?>"> <div class="pin">
 	    					
