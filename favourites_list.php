@@ -101,7 +101,7 @@ error_reporting(0);
 		
 		<a href = <?php echo $hrefPath ?>>
 		<img src= <?php echo $imagePath ?> alt="Test">
-		<h4><? echo $rname[$index]?></h4>
+		<h4><?php echo $rname[$index]?></h4>
 		</a></div>
 <!-- 		<span class="form-control glyphicon glyphicon-trash siteUserrow-remover1"></span>
             
