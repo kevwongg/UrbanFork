@@ -3,6 +3,7 @@
 <?php include("database.php");?>
 <?php include 'ChromePhp.php';?>
 <?php ChromePhp::log('Hello console!');?>
+<?php error_reporting(0);?>
 
 
 <html lang="en">
@@ -20,11 +21,18 @@
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="favourite.js"></script>					
 	</head>
+
 	<body>		
+
+	<body>
+		
+		
 		<?php
 			$rname = $_GET['rname'];
 			// echo $rname;
+			$_SESSION["rname"] = $rname;
 			$location = $_GET['location'];
+			$_SESSION['location'] = $location;
 			// echo $location;
 			$userId = $_SESSION['userId'];
 
@@ -91,6 +99,13 @@
 
 		</script>
 		<?php
+
+			$hrefRname = str_replace(' ', '%20', $rname);
+			$hrefLoc = str_replace(' ', '%20', $location);
+					
+			$statsPath = "stats.php?rname=".$hrefRname."&location=".$hrefLoc;
+			
+			
 			$sql="SELECT * FROM restaurant WHERE rname = '" . $rname . "' AND location = '" . $location . "'";
 			$result = mysqli_query($con, $sql) or die(mysqli_error($con));
 			while($row = mysqli_fetch_array($result)){
@@ -110,6 +125,15 @@
 			while($row = mysqli_fetch_array($result)){
 				$listFavId['id'][] = $row['listid'];
 			}			
+
+			
+			
+			if(isset($_SESSION['username'])){
+				$sql = "INSERT INTO browses(id, location, rname)
+						VALUES(".$_SESSION['userId'].", '".$location."' , '".$rname."')
+						ON DUPLICATE KEY UPDATE location = '".$location."'";
+				$result = mysqli_query($con, $sql) or die(mysqli_error($con));
+			}
 
 		?>
 		<div class="container-fluid" id="box">
@@ -131,6 +155,7 @@
   							
   							for($index = 0; $index < sizeof($listfav['id']); $index++){ 
 
+  								//error_reporting(0);
   								if(isset($listFavId) && $listFavId['id'][$j] == $listfav['id'][$index]){ 							
   									echo "<li><a href='#' class='small' data-value='".$listfav['id'][$index]."' id ='".$listfav['id'][$index]."' name='lists'><input type='checkbox' />".$listfav['name'][$index]."</a></li>";
   								}
@@ -154,23 +179,69 @@
 
 					<li>
 					<div class="col-sm-12">
-						<a href="#" target="blank" title="Edit" class="btn-social btn-outline"><i class="fa fa-pencil"></i></a>
+
+					<?php if (isset($_SESSION['admin_userid'])) { 
+						$hrefRname = str_replace(' ', '%20', $rname);
+						$hrefLoc = str_replace(' ', '%20', $location);
+						$edit_restaurant_address = "edit_restaurant.php?rname=".$hrefRname."&location=".$hrefLoc;
+						?>
+						<a href=<?php echo $edit_restaurant_address ?> title="Edit" class="btn-social btn-outline"><i class="fa fa-pencil"></i></a>
 						</div>
 					</li>
+					<?php }?>
 					<li>
+
+
 					<div class="row">
-					<div class="col-sm-12">
-						<a href="#" title="Statistics" target="blank" class="btn-social btn-outline"><i class="fa fa-bar-chart"></i></a>
+						<div class="col-sm-12">
+							<a href=<?php echo $statsPath ?>  title="Statistics" target="blank" class="btn-social btn-outline"><i class="fa fa-bar-chart"></i></a>
 						</div>
-						</div>
+					</div>
+
 					</li>
 					
 				</ul>
 			</div>
 		</div>
 		<div class="text-center" id="menu"><h2>Menu</h2></div>
+
 		<?php
-			$sql="SELECT * FROM menu WHERE rname = '" . $rname . "' AND location = '" . $location . "'ORDER BY type DESC";
+			$hrefRname = str_replace(' ', '%20', $rname);
+			$hrefLoc = str_replace(' ', '%20', $location);
+			$restaurant_address = "restaurant.php?rname=".$hrefRname."&location=".$hrefLoc;
+		?>
+		<div align="center">
+			<form  method="post" action=<?php echo $restaurant_address ?>  id="searchform">
+				<fieldset data-role="controlgroup" data-type="horizontal">
+					<p>Select the attributes returned for the menu</p>
+					<label for="price">Price</label>
+					<input type="checkbox" name="price" id="price" value="price">
+					<label for="description">Description</label>
+					<input type="checkbox" name="description" id="description" value="description">
+				</fieldset>
+				<br>
+				<input class="btn btn-primary" type="submit" data-inline="true" value="Show menu" name="submit">
+			</form>
+		</div>
+
+		
+		<?php if (isset($_SESSION['admin_userid'])) { 
+			$hrefRname = str_replace(' ', '%20', $rname);
+			$hrefLoc = str_replace(' ', '%20', $location);
+			$edit_restaurant_menu_address = "edit_restaurant_menu.php?rname=".$hrefRname."&location=".$hrefLoc;
+		?>
+
+		<br>
+		<div class="text-center">
+			<a class="text-center" href=<?php echo $edit_restaurant_menu_address ?>>Edit Menu</a>
+			<br><br>
+		</div>
+
+		<?php }?>
+
+		<?php
+		if(isset($_POST['submit'])){   
+			$sql="SELECT * FROM menu WHERE rname = '" . $_SESSION['rname'] . "' AND location = '" . $_SESSION['location'] . "'ORDER BY type DESC";
 			$result = mysqli_query($con, $sql) or die(mysqli_error($con));
 			while($row = mysqli_fetch_array($result)){
 				$type = $row['type'];
@@ -184,17 +255,22 @@
 					while($menu_row = mysqli_fetch_array($menu_result)){
 						echo "<div class = 'col-sm-6 text-center menu-item'>";
 							echo "<div class = 'text-center item-title'>";
-								echo $menu_row['dname'] . '... ';
-								echo $menu_row['price'];
+								echo $menu_row['dname'] ;
+								if(isset($_POST['price'])){
+									echo '... ' . $menu_row['price'];
+								}
 							echo "</div>";
-							echo "<div class = 'text-center item-description'>";
-								echo $menu_row['description'];
-							echo "</div>";
+							if(isset($_POST['description'])){
+								echo "<div class = 'text-center item-description'>";
+									echo $menu_row['description'];
+								echo "</div>";
+							}
 						echo "</div>";
 					}
 				echo "</div>";
 				echo "<br>";
 			}
+		}
 		?>
 
 

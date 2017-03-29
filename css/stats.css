@@ -1,0 +1,48 @@
+
+#back-btn{
+	background-color: #4D6CEA;
+	border-color: #4D6CEA;
+}
+#back-btn:hover {
+  color: #fff;
+  background-color: #5E7DFB;
+}
+
+#box {
+  color: #F8F8F2;
+  background-color: #666666;
+  padding-bottom: 35px;
+}
+
+h1, .menu{
+	font-family: "Times New Roman", Times, serif;
+}
+
+
+button{
+}
+
+.btn-aggr{
+	color: #fff;
+	margin-top: 50px;
+	border-radius: 10px 10px 10px 10px;
+	width: 200px;
+	background-color: #4D6CEA;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	border-color: #fff;
+	border: none;
+    outline:none;
+}
+
+.btn-aggr:hover {
+  color: #fff;
+  background-color: #5E7DFB;
+}
+
+
+#aggr-output{
+	margin-top: 75px;
+	font-size: 750%;
+	text-align: center;
+}
