@@ -42,7 +42,7 @@ echo($listName);?> -->
       <p>
       <button style = "height:50px;width:200px" class="btn btn-primary btn-lg" type="delete" name="delete">Delete</button>
       </p>
-      <a style ="height:50px;width:200px" class="btn btn-primary btn-lg" href="http://localhost/urbanfork/favourites_empty.php" type="cancel" name="cancel">Cancel</a>
+      <a style ="height:50px;width:200px" class="btn btn-primary btn-lg" href="http://localhost/urbanfork/favourites.php" type="cancel" name="cancel">Cancel</a>
       
     </div>
     </form>

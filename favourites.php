@@ -79,7 +79,6 @@
 
 	    				
 	    				
-	    				
 	    				<div>
 	    				<a class="btn btn-primary btn-sm" href="http://localhost/urbanfork/delete_list.php?listId=<?=$listid?>&listName=<?=$listName?>" role="button">Delete</a>
 	    					<a href="favourites_list.php?listId=<?=$listid?>&listName=<?=$listName?>"> <div class="pin">
@@ -90,9 +89,9 @@
 	    					</div></a>
 	    					</div>
 	    					<div>
+
 	    				<?php
 	    					}
-	    					//var_dump($listName, $listid)
 	    				?>
 
 	    				<!-- <?php 

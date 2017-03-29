@@ -304,7 +304,7 @@
 			 else {
 				$sql = "DELETE FROM maintains WHERE  listid = $listId AND id = $userId AND location ='" . $location . "' AND rname = '".$rname ."'";	
 			 }
-				// echo $sql;			
+				 		
 				$result = mysqli_query($con, $sql) or die(mysqli_error($con));
 
 	}
