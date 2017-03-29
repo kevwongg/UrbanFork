@@ -11,6 +11,8 @@
 	}
 
 	$userId = $_SESSION['userId'];
+	
+	$name = $_SESSION['name'];
 
 
 
@@ -32,7 +34,7 @@
 		<div class="container">
 
 			<div class="jumbotron">
-				<h2>Hey there <? echo $_SESSION['name'];?>!</h2> 
+				<h2>Hey there <?php echo $name;?>!</h2> 
 				<p>All of your favourites lists are below. Please note that if your list is empty, it will not show up here. Please add a restaurant to that list first! </p>
 				<p><a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/search.php" role="button">Find More Favourites</a>
 				<a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/add_list.php" role="button">Add Favourites List</a>
