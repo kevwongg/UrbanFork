@@ -37,7 +37,7 @@ error_reporting(0);
 
 <div class="container">
 <div class="jumbotron">
-<h2><? echo $listName ?> </h2>
+<h2><?php echo $listName ?> </h2>
 <p><a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/search.php" role="button">Favourite more restaurants</a> 
 <a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/rename_list.php?listId=<?=$listId?>" role="button">Edit List Name</a>
 
