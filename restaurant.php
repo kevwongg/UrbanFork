@@ -49,7 +49,7 @@
 					$listfav['id'][] = $row1['listid'];
 					$listfav['name'][] = $row1['listname'];
 				}
-				print_r($listfav);	
+				//print_r($listfav);	
 			}
 
 					
