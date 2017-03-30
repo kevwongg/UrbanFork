@@ -30,8 +30,6 @@ error_reporting(0);
 	<link href="css/pin.css" rel="stylesheet">
 </head>
 
-<a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/delete_restaurant.php?listId=<?php echo $listId?>&listName=<?php echo $listName?>&userId=<?php echo $userId?>" role="button">Delete Restaurant</a>
-
 
 
 <body>
