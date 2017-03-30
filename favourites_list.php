@@ -12,7 +12,6 @@ if (!isset($_SESSION['username'])) {
 $listId = $_GET['listId'];
 $listName = $_GET['listName'];
 $userId = $_SESSION['userId'];
-$listId = $_GET['listId'];
 ?>
 
 		<?php
@@ -43,6 +42,7 @@ error_reporting(0);
 
 <a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/delete_restaurant.php?listId=<?php echo $listId?>&listName=<?php echo $listName?>&userId=<?php echo $userId?>" role="button">Delete Restaurant</a>
 
+
 <!-- <div class ="row">
 <div class="col-lg-12">
 <div class="button-group">
@@ -71,6 +71,8 @@ error_reporting(0);
 		}
 
 
+
+
 		$index = 0; 
 		// if ($rname = NULL) {
 		// 	echo ("You have no favourited restaurants!");
@@ -95,8 +97,13 @@ error_reporting(0);
 		<tbody>
 		<tr> 
 		
+		<div>
+		
+		<a class="btn btn-primary btn-sm" href="http://localhost/urbanfork/delete_restaurant.php?listId=<?=$listId?>&rname=<?=$hrefRname?>&listName=<?=$listName?>" role="button">Delete</a>
+	
 		
 		<div class = "pin">
+
 		<!--<div class = "image">-->
 		
 		<a href = <?php echo $hrefPath ?>>
@@ -115,13 +122,12 @@ error_reporting(0);
             </script> -->
 		
 
-
-
 		<?php
 		$index++;
 		}
 		mysqli_close($con);
 		?>
+
 		</div>
 		</div>
 		</div>

@@ -16,8 +16,11 @@ include("header.php");?>
 </head>
 <body>
 
-<?php $listId = $_GET['listId']?> 
-<form method="post" id="form" action="delete_process.php?listId=<?=$listId?>&listName=<?=$listName?>&userId=<?=$userId?>">
+<?php $listId = $_GET['listId'];
+echo $listId?> 
+
+<?php $rname = $_GET['rname']?>
+<form method="post" id="form" action="delete_process.php?listId=<?=$listId?>&listName=<?=$listName?>&userId=<?=$userId?>&rname=<?=$rname?>">
 <p class="text-center login-title">Delete Favourited Restaurant</p>
 
 <?php if (isset($_SESSION['errors'])): ?>
@@ -30,10 +33,13 @@ include("header.php");?>
     unset($_SESSION['errors']); ?>
 
      <div class="container">
-      <label><b>Please enter the restaurant you want to delete</b></label>
-      <input type="text" placeholder="Enter restaurant to delete" name="rname" required>
+      <label><b>Please confirm that the list you want to delete is: <?php echo $rname?></b></label>
+      <!-- <input type="text" placeholder="Enter restaurant to delete" name="rname" required> -->
+      <p>
+      <button style = "height:50px;width:200px" class="btn-primary" type="delete" name="delete">Delete</button>
+      </p>
+      <a style ="height:50px;width:200px" class="btn btn-primary btn-lg" href="http://localhost/urbanfork/favourites.php" type="cancel" name="cancel">Cancel</a>
 
-      <button class="btn-primary" type="delete" name="delete">Delete</button>
     </div>
     </form>
 
