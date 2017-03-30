@@ -27,7 +27,7 @@
 	<div class="jumbotron">
 		<h2>Hey there <? echo $_SESSION['name'];?>!</h2>
 		<p>Listed here are favourites lists that are empty.</p>
-		<p><a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/search.php" role="button">Add Favourites</a>
+		<p><a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/search.php" role="button">Search for Favourites</a>
 		<a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/favourites.php" role="button">Back to Favourites Page</a></p>
 		</div>
 		</div>
@@ -47,10 +47,13 @@
 	    					$listid = $row['listid'];
 	    				
 	    				?>
-	    				<div class="pin">
-	    				<a class="btn btn-primary btn-sm" href="http://localhost/urbanfork/delete_list.php?listId=<?=$listid?>&listName=<?=$listName?>" role="button">Delete</a>
+	    				<div> 
+	    				
+	    				<a class="btn btn-primary btn-md" href="http://localhost/urbanfork/delete_list.php?listId=<?=$listid?>&listName=<?=$listName?>" role="button">Delete</a>
+	    				<a href="favourites_list.php?listId=<?=$listid?>&listName=<?=$listName?>"> <div class="pin">
 	    				<img src= "./img/searchImage/empty.jpg"/>
 	    				<h4><? echo $listName?></h4>
+	    				</div>
 	    				</div>
 	    				<div>
 	    				<?php 

@@ -53,6 +53,8 @@
 	    			$userId = $_SESSION['userId'];        
 	    			// $query = "SELECT DISTINCT lf.listid,  lf.listname, m.rname, m.location FROM listoffavourites lf INNER JOIN maintains m ON lf.listid = m.listid AND m.id = $userId GROUP BY lf.listid";
 
+	    			//LEFT JOIN should work to filter out the unwanted stuff, not sure why its not working right now
+
 	    			$query = "SELECT DISTINCT lf.listid,  lf.listname, m.rname, m.location FROM listoffavourites lf INNER JOIN maintains m ON lf.listid = m.listid AND lf.id = $userId GROUP BY lf.listid";
 	    			
 
@@ -88,6 +90,7 @@
 	    						<h4><?php echo $listName?></h4>
 	    					</div></a>
 	    					</div>
+	    					
 	    					<div>
 
 	    				<?php
