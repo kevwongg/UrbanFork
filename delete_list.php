@@ -19,8 +19,7 @@ include("header.php");?>
 <?php $listId = $_GET['listId']?> 
 <?php $listName = $_GET['listName']?>
 <?php $userId = $_SESSION['userId'];?>
-<!-- echo($userId);
-echo($listName);?> -->
+
 
 <form method="post" id="form" action="delete_list_process.php?listId=<?=$listId?>&listName=<?=$listName?>&userId=<?=$userId?>">
 <p class="text-center login-title">Delete Favourites List</p>

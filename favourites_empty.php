@@ -37,7 +37,7 @@
 	    	<div id ="columns">
 	    			<?php        
 	    			$userId = $_SESSION['userId']; 
-	    			//$query = "SELECT DISTINCT lf.listid,  lf.listname FROM listoffavourites lf, maintains m WHERE lf.id = $userId AND lf.listid != m.listid";
+	    			
 	    			$query = "SELECT lf.listid, lf.listname FROM listoffavourites lf WHERE lf.id = $userId AND listid NOT IN (SELECT m.listid FROM maintains m WHERE m.id = $userId)";
 	    				
 	    				$result = mysqli_query($con, $query) or die("Error");

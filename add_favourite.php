@@ -17,7 +17,7 @@ $listId = $_GET['listId']?>
 </head>
 <body>
 
-<!-- <form method="post" id="form" action="add_favourite_process.php?listId=<?=$listId?>&rname=<?=$rname?>&location=<?=$location?>&listName=<?=$listName?>&userId=<?=$userId?>"> -->
+
 <form method="post" id="form" action="add_favourite_process.php?listId=<?=$listId?>">
 <p class="text-center login-title">Add a Favourite Restaurant</p>
 
