@@ -21,8 +21,9 @@
           if (isset($_SESSION['admin_userid'])) {
             echo '<li id="admin_manage"><a href="admin_manage.php">Manage</a></li>';
             echo '<li id="add_restaurant"><a href="add_restaurant.php">Add Restaurant</a></li>';
+          } else {
+            echo '<li id="Favourites"><a href="Favourites.php">Favourites</a></li>';
           }
-          echo '<li id="Favourites"><a href="Favourites.php">Favourites</a></li>';
           echo '<li><a href="logout.php">Logout</a></li>';        
         } else {
           echo '<li id="login" ><a href="login.php">Login/Register</a></li>';  
