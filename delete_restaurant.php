@@ -16,8 +16,7 @@ include("header.php");?>
 </head>
 <body>
 
-<?php $listId = $_GET['listId'];
-echo $listId?> 
+<?php $listId = $_GET['listId'];?> 
 
 <?php $rname = $_GET['rname']?>
 <form method="post" id="form" action="delete_process.php?listId=<?=$listId?>&listName=<?=$listName?>&userId=<?=$userId?>&rname=<?=$rname?>">
@@ -36,7 +35,7 @@ echo $listId?>
       <label><b>Please confirm that the list you want to delete is: <?php echo $rname?></b></label>
       <!-- <input type="text" placeholder="Enter restaurant to delete" name="rname" required> -->
       <p>
-      <button style = "height:50px;width:200px" class="btn-primary" type="delete" name="delete">Delete</button>
+      <button style = "height:50px;width:200px" class="btn btn-primary btn-lg" type="delete" name="delete">Delete</button>
       </p>
       <a style ="height:50px;width:200px" class="btn btn-primary btn-lg" href="http://localhost/urbanfork/favourites.php" type="cancel" name="cancel">Cancel</a>
 

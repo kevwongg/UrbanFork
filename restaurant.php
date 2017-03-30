@@ -149,42 +149,8 @@
 				<br>
 				<div class="text-center">Cuisine: <?php echo $cuisine?> | Location: <?php echo $location?> | Phone #: <?php echo $phone?></div>
 				<ul class="list-inline" align="center">
+				
 					<li>
-  						<div class="row">
-  						<div class="col-sm-12">
-  						<div class="button-group">
-        				<button type="button" title="Favourite" class="btn btn-social btn-outline" data-toggle="dropdown"><i class="fa fa-star"></i><span class="caret"></span></button>
-							<ul class="dropdown-menu">
-							<li><a href="#" class="small">
-  							<?php
-  							$j = 0;
-  							
-  							for($index = 0; $index < sizeof($listfav['id']); $index++){ 
-
-  								//error_reporting(0);
-  								if(isset($listFavId) && $listFavId['id'][$j] == $listfav['id'][$index]){ 							
-  									echo "<li><a href='#' class='small' data-value='".$listfav['id'][$index]."' id ='".$listfav['id'][$index]."' name='lists'><input type='checkbox' />".$listfav['name'][$index]."</a></li>";
-  								}
-  								else {
-									echo "<li><a href='#' class='small' data-value='".$listfav['id'][$index]."' id ='".$listfav['id'][$index]."' name='lists'><input type='checkbox' checked/>".$listfav['name'][$index]."</a></li>";
-  								}
-
-  								if(isset($listFavId) && $j < sizeof($listFavId['id']) - 1){
-  									$j++;
-
-  								}  								
-  							}
-  							?>
-
-
-  							</ul>
-  						</div>
-  						</div>
-  						</div>
-					</li>
-
-					<li>
-					<div class="col-sm-12">
 
 					<?php if (isset($_SESSION['admin_userid'])) { 
 						$hrefRname = str_replace(' ', '%20', $rname);
@@ -192,7 +158,7 @@
 						$edit_restaurant_address = "edit_restaurant.php?rname=".$hrefRname."&location=".$hrefLoc;
 						?>
 						<a href=<?php echo $edit_restaurant_address ?> title="Edit" class="btn-social btn-outline"><i class="fa fa-pencil"></i></a>
-						</div>
+						
 					</li>
 					<?php }?>
 					<li>
