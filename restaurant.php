@@ -151,7 +151,7 @@
 				<ul class="list-inline" align="center">
 				
 					<li>
-
+						
 					<?php if (isset($_SESSION['admin_userid'])) { 
 						$hrefRname = str_replace(' ', '%20', $rname);
 						$hrefLoc = str_replace(' ', '%20', $location);
@@ -164,11 +164,8 @@
 					<li>
 
 
-					<div class="row">
-						<div class="col-sm-12">
-							<a href=<?php echo $statsPath ?>  title="Statistics" class="btn-social btn-outline"><i class="fa fa-bar-chart"></i></a>
-						</div>
-					</div>
+					<a href=<?php echo $statsPath ?>  title="Statistics" class="btn-social btn-outline"><i class="fa fa-bar-chart"></i></a>
+
 
 					</li>
 					
