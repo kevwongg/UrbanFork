@@ -39,7 +39,7 @@ error_reporting(0);
 <h2><?php echo $listName ?> </h2>
 <p><a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/search.php" role="button">Favourite more restaurants</a> 
 <a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/rename_list.php?listId=<?=$listId?>" role="button">Edit List Name</a>
-
+<a class="btn btn-primary btn-lg" href="http://localhost/urbanfork/add_favourite.php?listId=<?=$listId?>" role="button">Add a Favourite Restaurant</a>
 
 <!-- <div class ="row">
 <div class="col-lg-12">
