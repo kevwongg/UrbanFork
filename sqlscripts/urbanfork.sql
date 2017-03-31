@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 31, 2017 at 09:39 AM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- Host: localhost
+-- Generation Time: Mar 31, 2017 at 07:44 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -44,10 +44,22 @@ INSERT INTO `admin` (`id`, `name`, `email`, `password`, `country`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin_manages_restaurant`
+-- Table structure for table `admin_adds_restaurant`
 --
 
-CREATE TABLE `admin_manages_restaurant` (
+CREATE TABLE `admin_adds_restaurant` (
+  `id` int(11) NOT NULL,
+  `location` varchar(50) NOT NULL,
+  `rname` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_edits_restaurant`
+--
+
+CREATE TABLE `admin_edits_restaurant` (
   `id` int(11) NOT NULL,
   `location` varchar(50) NOT NULL,
   `rname` varchar(50) NOT NULL
@@ -81,7 +93,18 @@ INSERT INTO `browses` (`id`, `location`, `rname`) VALUES
 (4, '9th Avenue', 'Seoul House'),
 (4, 'Vancouver', 'Pizza Locale'),
 (4, 'Vancouver UBC', 'Pizza Hut'),
-(5, 'Vancouver', 'Pizza Locale');
+(5, 'Vancouver', 'Pizza Locale'),
+(6, '1st Avenue', 'New Spaghetti Factory'),
+(6, '2nd Avenue', 'Escargot'),
+(6, '3rd Avenue', 'South Garden'),
+(6, '4th Avenue', 'K-town BBQ'),
+(6, '5th Avenue', 'Sushi land'),
+(6, '6th Avenue', 'Kimbap World'),
+(6, '7th Avenue', 'The Old Haus'),
+(6, '8th Avenue', 'La Trattoria'),
+(6, '9th Avenue', 'Seoul House'),
+(6, 'Vancouver', 'Pizza Locale'),
+(6, 'Vancouver UBC', 'Pizza Hut');
 
 -- --------------------------------------------------------
 
@@ -255,7 +278,8 @@ CREATE TABLE `loggedinuser` (
 
 INSERT INTO `loggedinuser` (`id`, `name`, `email`, `password`, `country`, `username`) VALUES
 (4, 'Tai Lopez', 'tai@gmail.com', 'test', 'Canada', 'tailopez'),
-(5, 'Kevin Wong', 'kevinw@test.com', 'password', 'Canada', 'kevinw');
+(5, 'Kevin Wong', 'kevinw@test.com', 'password', 'Canada', 'kevinw'),
+(6, 'Kevin', 'kev@test.com', 'test', 'Canada', 'kevinw');
 
 -- --------------------------------------------------------
 
@@ -323,7 +347,6 @@ CREATE TABLE `restaurant` (
   `description` varchar(200) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `rname` varchar(50) NOT NULL
-  -- CHECK (CHAR_LENGTH(phone) >= 10)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -331,7 +354,7 @@ CREATE TABLE `restaurant` (
 --
 
 INSERT INTO `restaurant` (`location`, `cuisine`, `description`, `phone`, `rname`) VALUES
-('1st Avenue', 'Italian', 'Lots of great pasta and other Italian Food', '(111) 111-1111', 'New Spaghetti Factory'),
+('1st Avenue', 'Italian', 'Lots of great pasta and other Italian Food', '(111) 111-1121', 'New Spaghetti Factory'),
 ('2nd Avenue', 'French', 'The best French food in town', '(222) 222-2222', 'Escargot'),
 ('3rd Avenue', 'Chinese', 'A taste of China at an affordable price', '(333) 333-3333', 'South Garden'),
 ('4th Avenue', 'Korean', 'The famous Korean BBQ is proudly served here', '(444) 444-4444', 'K-town BBQ'),
@@ -355,9 +378,16 @@ ALTER TABLE `admin`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `admin_manages_restaurant`
+-- Indexes for table `admin_adds_restaurant`
 --
-ALTER TABLE `admin_manages_restaurant`
+ALTER TABLE `admin_adds_restaurant`
+  ADD PRIMARY KEY (`id`,`location`,`rname`),
+  ADD KEY `location` (`location`,`rname`);
+
+--
+-- Indexes for table `admin_edits_restaurant`
+--
+ALTER TABLE `admin_edits_restaurant`
   ADD PRIMARY KEY (`id`,`location`,`rname`),
   ADD KEY `location` (`location`,`rname`);
 
@@ -430,22 +460,29 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `listoffavourites`
 --
 ALTER TABLE `listoffavourites`
-  MODIFY `listid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9628341;
+  MODIFY `listid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9628343;
 --
 -- AUTO_INCREMENT for table `loggedinuser`
 --
 ALTER TABLE `loggedinuser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `admin_manages_restaurant`
+-- Constraints for table `admin_adds_restaurant`
 --
-ALTER TABLE `admin_manages_restaurant`
-  ADD CONSTRAINT `admin_manages_restaurant_ibfk_1` FOREIGN KEY (`id`) REFERENCES `admin` (`id`),
-  ADD CONSTRAINT `admin_manages_restaurant_ibfk_2` FOREIGN KEY (`location`,`rname`) REFERENCES `restaurant` (`location`, `rname`);
+ALTER TABLE `admin_adds_restaurant`
+  ADD CONSTRAINT `admin_adds_restaurant_ibfk_1` FOREIGN KEY (`id`) REFERENCES `admin` (`id`),
+  ADD CONSTRAINT `admin_adds_restaurant_ibfk_2` FOREIGN KEY (`location`,`rname`) REFERENCES `restaurant` (`location`, `rname`);
+
+--
+-- Constraints for table `admin_edits_restaurant`
+--
+ALTER TABLE `admin_edits_restaurant`
+  ADD CONSTRAINT `admin_edits_restaurant_ibfk_1` FOREIGN KEY (`id`) REFERENCES `admin` (`id`),
+  ADD CONSTRAINT `admin_edits_restaurant_ibfk_2` FOREIGN KEY (`location`,`rname`) REFERENCES `restaurant` (`location`, `rname`);
 
 --
 -- Constraints for table `browses`
