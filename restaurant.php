@@ -29,77 +29,25 @@
 		
 		<?php
 			$rname = $_GET['rname'];
-			// echo $rname;
 			$_SESSION["rname"] = $rname;
 			$location = $_GET['location'];
 			$_SESSION['location'] = $location;
-			// echo $location;
 			if(isset($_SESSION['userId'])){
 				$userId = $_SESSION['userId'];
-				// $sql1 = "SELECT DISTINCT lf.listid, lf.listname FROM listoffavourites lf, maintains m WHERE lf.listid = m.listid AND m.id = $userId";
 				$sql1 = "SELECT DISTINCT lf.listid, lf.listname FROM listoffavourites lf WHERE lf.id = $userId"; 
 
 				$result1 = mysqli_query($con,$sql1) or die(mysqli_error($con));
-
-
-				//$listfav;
-
 				
 				 while($row1 = mysqli_fetch_array($result1)){
 					$listfav['id'][] = $row1['listid'];
 					$listfav['name'][] = $row1['listname'];
 				}
-				//print_r($listfav);	
 			}
 
 					
 
 						
 		?>
-		<script type="text/javascript">					
-
-		$(document).ready('checkbox').on('click', '.small', function(){
-        	var chId = $(this).attr('data-value');        
-        	// var check;
-
-        	// if( $(this).is(':checked') ){
-        	// 	check = 'not';
-        	// }
-        	// else {
-        	// 	check = 'yes';
-        	// }
-
-        	//var checkBoxValue = $(this).prop('checked'); 
-        	var checkBoxValue;
-        	if($(this).find('input[type="checkbox"]').is(':checked')){
-        		checkBoxValue = 'checked';
-        		alert("Added to your Favourites!");
-        	}else{
-        		checkBoxValue = 'not checked';
-        		alert("Deleted from your Favourites!");
-        		
-        }
-        
-	        $.ajax({
-	            type: "GET",
-	            url: 'restaurant.php?rname=<?php echo $rname?>&location=<?php echo $location?>&checkBoxValue=' + checkBoxValue,
-	            dataType: "text",
-	            data: {id: chId},
-	            statusCode: {
-	                404: function() {
-	                  alert( "page not found" );
-	                }
-	            },
-	            success: function(data){               
-	               console.log(data);
-	               $(this).collapse('hide');
-	            // alert("Added to your Favourites ");
-	            }    
-	        });      
-	    });
-
-
-		</script>
 		<?php
 
 			$hrefRname = str_replace(' ', '%20', $rname);
@@ -120,10 +68,8 @@
 
 			
 			
-			if(isset($_SESSION['userId'])){
-				// $sql = "SELECT listid from maintains m WHERE m.rname ='$rname' AND m.id = $userId";		
+			if(isset($_SESSION['userId'])){	
 				$sql = "SELECT listid from listoffavourites lf WHERE lf.id = $userId";	
-				// $sql = "SELECT m.listid from listoffavourites lf, maintains m WHERE lf.id = $userId AND m.rname = '$rname'";	
 				$result = mysqli_query($con, $sql) or die(mysqli_error($con)); 
 				
 				while($row = mysqli_fetch_array($result)){
@@ -252,8 +198,6 @@
     }
 
     function saveFavourite($listId){
-		echo $listId;
-			//include("database.php");    		    					
 
     		$rname = $_GET['rname'];
 			$location = $_GET['location'];

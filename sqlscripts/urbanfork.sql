@@ -323,6 +323,7 @@ CREATE TABLE `restaurant` (
   `description` varchar(200) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `rname` varchar(50) NOT NULL
+  -- CHECK (CHAR_LENGTH(phone) >= 10)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
