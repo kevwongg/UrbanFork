@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.6.6
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 30, 2017 at 10:01 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 7.1.1
+-- Host: 127.0.0.1
+-- Generation Time: Mar 31, 2017 at 09:39 AM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -101,25 +101,70 @@ CREATE TABLE `contains` (
 --
 
 INSERT INTO `contains` (`dishid`, `location`, `rname`, `type`) VALUES
+(8383, '2nd Avenue', 'Escargot', 'French Menu'),
+(8383, '8th Avenue', 'La Trattoria', 'Italian menu'),
+(10932, '2nd Avenue', 'Escargot', 'French Menu'),
+(10932, '8th Avenue', 'La Trattoria', 'Italian menu'),
+(11111, '7th Avenue', 'The Old Haus', 'German Menu'),
+(11111, '8th Avenue', 'La Trattoria', 'Italian menu'),
+(11111, '9th Avenue', 'Seoul House', 'Korean menu'),
 (11111, 'Vancouver', 'Pizza Locale', 'Breakfast'),
 (11111, 'Vancouver', 'Pizza Locale', 'Dinner'),
 (11111, 'Vancouver', 'Pizza Locale', 'Lunch'),
 (12612, '1st Avenue', 'New Spaghetti Factory', 'Menu1'),
+(12612, '7th Avenue', 'The Old Haus', 'German Menu'),
 (12612, 'Vancouver', 'Pizza Locale', 'Dinner'),
+(12612, 'Vancouver UBC', 'Pizza Hut', 'Pizza Hut Menu'),
+(18124, '7th Avenue', 'The Old Haus', 'German Menu'),
+(19326, '7th Avenue', 'The Old Haus', 'German Menu'),
+(22222, '6th Avenue', 'Kimbap World', 'Kimbap Menu'),
+(22222, '9th Avenue', 'Seoul House', 'Korean menu'),
 (22222, 'Vancouver', 'Pizza Locale', 'Breakfast'),
 (22222, 'Vancouver', 'Pizza Locale', 'Dinner'),
 (22222, 'Vancouver', 'Pizza Locale', 'Lunch'),
 (22873, '1st Avenue', 'New Spaghetti Factory', 'Menu1'),
+(23213, '9th Avenue', 'Seoul House', 'Korean menu'),
+(23213, 'Vancouver UBC', 'Pizza Hut', 'Pizza Hut Menu'),
+(25081, '3rd Avenue', 'South Garden', 'Chinese Menu'),
+(25081, '4th Avenue', 'K-town BBQ', 'Korean Menu'),
+(25302, '3rd Avenue', 'South Garden', 'Chinese Menu'),
+(25302, '5th Avenue', 'Sushi land', 'Japanese menu'),
+(33333, '1st Avenue', 'New Spaghetti Factory', 'Menu1'),
+(33333, '4th Avenue', 'K-town BBQ', 'Korean Menu'),
 (33333, 'Vancouver', 'Pizza Locale', 'Breakfast'),
 (33333, 'Vancouver', 'Pizza Locale', 'Dinner'),
 (33333, 'Vancouver', 'Pizza Locale', 'Lunch'),
 (34623, '1st Avenue', 'New Spaghetti Factory', 'Menu1'),
+(34623, '4th Avenue', 'K-town BBQ', 'Korean Menu'),
+(34623, '8th Avenue', 'La Trattoria', 'Italian menu'),
+(34623, 'Vancouver UBC', 'Pizza Hut', 'Pizza Hut Menu'),
+(38059, '3rd Avenue', 'South Garden', 'Chinese Menu'),
+(41341, '4th Avenue', 'K-town BBQ', 'Korean Menu'),
+(41341, '9th Avenue', 'Seoul House', 'Korean menu'),
+(43861, '8th Avenue', 'La Trattoria', 'Italian menu'),
+(43861, '9th Avenue', 'Seoul House', 'Korean menu'),
+(44444, '9th Avenue', 'Seoul House', 'Korean menu'),
 (44444, 'Vancouver', 'Pizza Locale', 'Breakfast'),
 (44444, 'Vancouver', 'Pizza Locale', 'Dinner'),
 (44444, 'Vancouver', 'Pizza Locale', 'Lunch'),
+(44444, 'Vancouver UBC', 'Pizza Hut', 'Pizza Hut Menu'),
+(52371, '5th Avenue', 'Sushi land', 'Japanese menu'),
+(52371, '9th Avenue', 'Seoul House', 'Korean menu'),
+(55555, '2nd Avenue', 'Escargot', 'French Menu'),
+(55555, '8th Avenue', 'La Trattoria', 'Italian menu'),
 (55555, 'Vancouver', 'Pizza Locale', 'Breakfast'),
 (55555, 'Vancouver', 'Pizza Locale', 'Dinner'),
-(55555, 'Vancouver', 'Pizza Locale', 'Lunch');
+(55555, 'Vancouver', 'Pizza Locale', 'Lunch'),
+(64621, '7th Avenue', 'The Old Haus', 'German Menu'),
+(72346, '2nd Avenue', 'Escargot', 'French Menu'),
+(72346, 'Vancouver UBC', 'Pizza Hut', 'Pizza Hut Menu'),
+(77310, '5th Avenue', 'Sushi land', 'Japanese menu'),
+(77310, '6th Avenue', 'Kimbap World', 'Kimbap Menu'),
+(77310, '9th Avenue', 'Seoul House', 'Korean menu'),
+(91273, '5th Avenue', 'Sushi land', 'Japanese menu'),
+(91273, '6th Avenue', 'Kimbap World', 'Kimbap Menu'),
+(98712, '4th Avenue', 'K-town BBQ', 'Korean Menu'),
+(98712, '6th Avenue', 'Kimbap World', 'Kimbap Menu');
 
 -- --------------------------------------------------------
 
@@ -139,14 +184,30 @@ CREATE TABLE `dishes` (
 --
 
 INSERT INTO `dishes` (`dishid`, `dname`, `description`, `price`) VALUES
+(8383, 'Seafood Pasta', 'Fresh ingredients', 24.99),
+(10932, 'Cream Soup', 'It\'s hot', 3.99),
 (11111, 'Spaghetti', 'Spaghetti with tomato sauce and meatballs', 13.99),
 (12612, 'Hamburger', 'It\'s really good', 7.99),
+(18124, 'Schnitzel', 'Deep fried pork', 10.99),
+(19326, 'Bratwurst', 'German sausage', 3.99),
 (22222, 'Pancake', 'Two pancakes with syrup of your choice', 6.99),
 (22873, 'Miso Ramen', 'Miso ramen', 9.99),
+(23213, 'Krabby Patty', 'The one and only', 5.99),
+(25081, 'Pork Dumplings', 'dim sum 2', 3.99),
+(25302, 'Shrimp Dumplings', 'dim sum', 4.99),
 (33333, 'Steak', 'Beef steak cooked to your choice', 21.99),
 (34623, 'Chicken Sandwich', 'It\'s good', 4.99),
+(38059, 'Rice', '1 Bowl of rice', 1.5),
+(41341, 'Korean BBQ plate', 'Assorted raw meats', 15.99),
+(43861, 'Ribs', 'tasty ribs', 22.99),
 (44444, 'BBQ Chicken Pizza', 'Pizza with BBQ Chicken and sauce', 11.99),
+(52371, 'Chirashi Don', 'Fresh ingredients only', 14.99),
 (55555, 'Mushroom Soup', 'Creamy soup with mushrooms', 5.99),
+(56151, 'Hotdog', 'Eat this', 2.99),
+(64621, 'Prime Steak', 'Good steak', 27.99),
+(72346, 'French food', 'I don\'t even know anymore', 14.99),
+(77310, 'California roll', 'You know what it is', 3.99),
+(91273, 'Dynamite roll', 'This is good', 4.99),
 (98712, 'Kimbap', '8 rolls', 3.99);
 
 -- --------------------------------------------------------
@@ -209,6 +270,13 @@ CREATE TABLE `maintains` (
   `rname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `maintains`
+--
+
+INSERT INTO `maintains` (`listid`, `id`, `location`, `rname`) VALUES
+(9628337, 4, '1st Avenue', 'New Spaghetti Factory');
+
 -- --------------------------------------------------------
 
 --
@@ -228,10 +296,19 @@ CREATE TABLE `menu` (
 INSERT INTO `menu` (`type`, `location`, `rname`) VALUES
 ('Breakfast', 'Vancouver', 'Pizza Locale'),
 ('Brunch', 'Vancouver', 'Pizza Locale'),
+('Chinese Menu', '3rd Avenue', 'South Garden'),
 ('Dinner', 'Vancouver', 'Pizza Locale'),
+('French Menu', '2nd Avenue', 'Escargot'),
+('German Menu', '7th Avenue', 'The Old Haus'),
+('Italian menu', '8th Avenue', 'La Trattoria'),
+('Japanese menu', '5th Avenue', 'Sushi land'),
+('Kimbap Menu', '6th Avenue', 'Kimbap World'),
+('Korean Menu', '4th Avenue', 'K-town BBQ'),
+('Korean menu', '9th Avenue', 'Seoul House'),
 ('Lunch', 'Vancouver', 'Pizza Locale'),
 ('Menu1', '1st Avenue', 'New Spaghetti Factory'),
 ('Pizza', 'Vancouver', 'Pizza Locale'),
+('Pizza Hut Menu', 'Vancouver UBC', 'Pizza Hut'),
 ('Special Guest', 'Vancouver', 'Pizza Locale');
 
 -- --------------------------------------------------------
