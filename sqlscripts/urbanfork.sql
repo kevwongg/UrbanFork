@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 29, 2017 at 10:50 PM
+-- Generation Time: Mar 30, 2017 at 10:01 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -80,6 +80,7 @@ INSERT INTO `browses` (`id`, `location`, `rname`) VALUES
 (4, '8th Avenue', 'La Trattoria'),
 (4, '9th Avenue', 'Seoul House'),
 (4, 'Vancouver', 'Pizza Locale'),
+(4, 'Vancouver UBC', 'Pizza Hut'),
 (5, 'Vancouver', 'Pizza Locale');
 
 -- --------------------------------------------------------
@@ -151,18 +152,6 @@ INSERT INTO `dishes` (`dishid`, `dname`, `description`, `price`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `favourites`
---
-
-CREATE TABLE `favourites` (
-  `id` int(11) NOT NULL,
-  `location` varchar(50) NOT NULL,
-  `rname` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `listoffavourites`
 --
 
@@ -182,7 +171,7 @@ INSERT INTO `listoffavourites` (`id`, `listid`, `listname`) VALUES
 (0, 3452346, 'Best Chinese Restaurants'),
 (0, 6762321, 'Breakfast Restaurants'),
 (0, 9628330, 'Pizza is the best'),
-(4, 9628332, 'test');
+(4, 9628337, 'New');
 
 -- --------------------------------------------------------
 
@@ -220,13 +209,6 @@ CREATE TABLE `maintains` (
   `rname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `maintains`
---
-
-INSERT INTO `maintains` (`listid`, `id`, `location`, `rname`) VALUES
-(9628332, 4, 'Vancouver', 'Pizza Locale');
-
 -- --------------------------------------------------------
 
 --
@@ -245,21 +227,12 @@ CREATE TABLE `menu` (
 
 INSERT INTO `menu` (`type`, `location`, `rname`) VALUES
 ('Breakfast', 'Vancouver', 'Pizza Locale'),
+('Brunch', 'Vancouver', 'Pizza Locale'),
 ('Dinner', 'Vancouver', 'Pizza Locale'),
 ('Lunch', 'Vancouver', 'Pizza Locale'),
 ('Menu1', '1st Avenue', 'New Spaghetti Factory'),
 ('Pizza', 'Vancouver', 'Pizza Locale'),
 ('Special Guest', 'Vancouver', 'Pizza Locale');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `publicuser`
---
-
-CREATE TABLE `publicuser` (
-  `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -289,34 +262,8 @@ INSERT INTO `restaurant` (`location`, `cuisine`, `description`, `phone`, `rname`
 ('7th Avenue', 'German', 'Traditional German food served with beer', '(777) 777-7777', 'The Old Haus'),
 ('8th Avenue', 'Italian', 'Rated 5/5 on Yalp! Come and see our famous dishes', '(888) 888-8888', 'La Trattoria'),
 ('9th Avenue', 'Korean', 'Great Korean food', '(999) 999-9999', 'Seoul House'),
-('Vancouver', 'Italian', 'Best Pizza', '6048998999', 'Pizza Locale');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `verifieduser`
---
-
-CREATE TABLE `verifieduser` (
-  `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `country` varchar(50) NOT NULL,
-  `location` varchar(50) NOT NULL,
-  `rname` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `vuser_edits_dishes`
---
-
-CREATE TABLE `vuser_edits_dishes` (
-  `id` int(11) NOT NULL,
-  `dishid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+('Vancouver', 'Italian', 'Best Pizza in Town', '6048998999', 'Pizza Locale'),
+('Vancouver UBC', 'Italian', 'Pizza hut is best', '5550981234', 'Pizza Hut');
 
 --
 -- Indexes for dumped tables
@@ -357,13 +304,6 @@ ALTER TABLE `dishes`
   ADD PRIMARY KEY (`dishid`);
 
 --
--- Indexes for table `favourites`
---
-ALTER TABLE `favourites`
-  ADD PRIMARY KEY (`id`,`location`,`rname`),
-  ADD KEY `location` (`location`,`rname`);
-
---
 -- Indexes for table `listoffavourites`
 --
 ALTER TABLE `listoffavourites`
@@ -393,33 +333,11 @@ ALTER TABLE `menu`
   ADD KEY `location` (`location`,`rname`);
 
 --
--- Indexes for table `publicuser`
---
-ALTER TABLE `publicuser`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `restaurant`
 --
 ALTER TABLE `restaurant`
   ADD PRIMARY KEY (`location`,`rname`),
   ADD UNIQUE KEY `phone` (`phone`);
-
---
--- Indexes for table `verifieduser`
---
-ALTER TABLE `verifieduser`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD KEY `location` (`location`,`rname`);
-
---
--- Indexes for table `vuser_edits_dishes`
---
-ALTER TABLE `vuser_edits_dishes`
-  ADD PRIMARY KEY (`id`,`dishid`),
-  ADD KEY `id` (`id`),
-  ADD KEY `dishid` (`dishid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -431,25 +349,15 @@ ALTER TABLE `vuser_edits_dishes`
 ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `favourites`
---
-ALTER TABLE `favourites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `listoffavourites`
 --
 ALTER TABLE `listoffavourites`
-  MODIFY `listid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9628333;
+  MODIFY `listid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9628341;
 --
 -- AUTO_INCREMENT for table `loggedinuser`
 --
 ALTER TABLE `loggedinuser`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `verifieduser`
---
-ALTER TABLE `verifieduser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -476,12 +384,6 @@ ALTER TABLE `contains`
   ADD CONSTRAINT `contains_ibfk_2` FOREIGN KEY (`location`,`rname`,`type`) REFERENCES `menu` (`location`, `rname`, `type`);
 
 --
--- Constraints for table `favourites`
---
-ALTER TABLE `favourites`
-  ADD CONSTRAINT `favourites_ibfk_1` FOREIGN KEY (`location`,`rname`) REFERENCES `restaurant` (`location`, `rname`);
-
---
 -- Constraints for table `listoffavourites`
 --
 ALTER TABLE `listoffavourites`
@@ -500,19 +402,6 @@ ALTER TABLE `maintains`
 --
 ALTER TABLE `menu`
   ADD CONSTRAINT `menu_ibfk_1` FOREIGN KEY (`location`,`rname`) REFERENCES `restaurant` (`location`, `rname`);
-
---
--- Constraints for table `verifieduser`
---
-ALTER TABLE `verifieduser`
-  ADD CONSTRAINT `verifieduser_ibfk_1` FOREIGN KEY (`location`,`rname`) REFERENCES `restaurant` (`location`, `rname`);
-
---
--- Constraints for table `vuser_edits_dishes`
---
-ALTER TABLE `vuser_edits_dishes`
-  ADD CONSTRAINT `vuser_edits_dishes_ibfk_1` FOREIGN KEY (`id`) REFERENCES `verifieduser` (`id`),
-  ADD CONSTRAINT `vuser_edits_dishes_ibfk_2` FOREIGN KEY (`dishid`) REFERENCES `dishes` (`dishid`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
