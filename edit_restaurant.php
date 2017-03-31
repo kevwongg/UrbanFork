@@ -71,7 +71,8 @@
       <input type="text" placeholder="Enter Description" value="<?php echo $description?>" name="description" required>
 
       <label><b>Phone</b></label>
-      <input type="text" placeholder="Phone" value="<?php echo $phone?>" name="phone" required>
+      <!-- check for the number of characters -->
+      <input type="text" pattern=".{10,}" required title="The phone number needs to have at least 10 characters" placeholder="Phone" value="<?php echo $phone?>" name="phone" required>
 
       <button class="btn-primary" type="submit" name="submit">Save</button>
     </div>
