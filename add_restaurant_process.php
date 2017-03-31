@@ -17,6 +17,7 @@ if(isset($_POST['submit'])){
 	$description = mysqli_real_escape_string($con, $_POST['description']);
 	$address = mysqli_real_escape_string($con, $_POST['address']);
 	$phone = mysqli_real_escape_string($con, $_POST['phone']);
+
 	// Validate input
 	if(!isset($name) || $name == '' || !isset($cuisine) || $cuisine == '' 
 		|| !isset($description) || $description == ''
@@ -38,6 +39,11 @@ if(isset($_POST['submit'])){
 			die('Error: '.mysqli_error($con));
 		} 
 		else {
+			$sql = "INSERT INTO admin_adds_restaurant(id, location, rname)
+			VALUES(".$_SESSION['admin_userid'].", '".$address."' , '".$name."')
+			ON DUPLICATE KEY UPDATE location = '".$address."'";
+			$result = mysqli_query($con, $sql) or die(mysqli_error($con));
+	
 			$_SESSION['success'] = array("Success!");
 			header("Location:add_restaurant.php");
 			exit();

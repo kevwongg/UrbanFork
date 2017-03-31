@@ -30,7 +30,6 @@
       $description = $row['description'];
       $phone = $row['phone'];
     }
-
   ?>
 
   <form method="post" id="form" action="edit_restaurant_process.php">
